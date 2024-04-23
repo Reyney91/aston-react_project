@@ -51,7 +51,7 @@ jobs: # each workflow consists of 1+ jobs; by default, all jobs run in parallel
         run: npm ci
 
       - name: Run linter
-        run: npm run check:typescript   
+        run: npm run type-check
 
   build:
     runs-on: ubuntu-latest
