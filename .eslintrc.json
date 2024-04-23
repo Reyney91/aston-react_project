@@ -1,20 +1,46 @@
 {
-  "extends": [
-    "eslint:recommended",
-    "react-app",
-    "plugin:react/jsx-runtime",
-    "prettier"
-  ],
+  "extends": ["eslint:recommended", "react-app", "plugin:react/jsx-runtime"],
   "parser": "@typescript-eslint/parser",
-  "parserOptions": { "project": true, "tsconfigRootDir": "./" },
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "project": true,
+    "tsconfigRootDir": "./"
+  },
   "plugins": ["@typescript-eslint"],
   "root": true,
   "ignorePatterns": ["dist"],
   "rules": {
+    "no-console": "warn",
+    "import/prefer-default-export": "off",
+    "no-unused-expressions": "error",
+    "no-restricted-exports": [
+      "error",
+      { "restrictDefaultExports": { "direct": true } }
+    ],
+    "import/order": [
+      1,
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index",
+          "object",
+          "type"
+        ]
+      }
+    ],
     "@typescript-eslint/consistent-type-imports": [
       2,
       { "fixStyle": "separate-type-imports" }
     ],
+    "react/jsx-no-target-blank": "off",
+    "react/jsx-no-useless-fragment": "error",
+    "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"] }],
+
     "@typescript-eslint/no-restricted-imports": [
       2,
       {

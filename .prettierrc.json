@@ -1,4 +1,10 @@
 {
-  "semi": false,
-  "arrowParens": "avoid"
+  "arrowParens": "avoid",
+  "printWidth": 80,
+  "tabWidth": 2,
+  "trailingComma": "all",
+  "singleQuote": true,
+  "semi": true,
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
 }
