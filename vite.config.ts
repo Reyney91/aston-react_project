@@ -1,7 +1,7 @@
-import { defineConfig } from "vitest/config"
-import react from "@vitejs/plugin-react"
+import path from 'path';
+import { defineConfig } from 'vitest/config';
+import react from '@vitejs/plugin-react';
 
-// https://vitejs.dev/config/
 // eslint-disable-next-line no-restricted-exports
 export default defineConfig({
   plugins: [react()],
@@ -10,8 +10,11 @@ export default defineConfig({
   },
   test: {
     globals: true,
-    environment: "jsdom",
-    setupFiles: "src/setupTests",
+    environment: 'jsdom',
+    setupFiles: 'src/setupTests',
     mockReset: true,
   },
-})
+  resolve: {
+    alias: { '@app': path.resolve('./src') },
+  },
+});
