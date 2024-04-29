@@ -18,16 +18,17 @@ import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { ClosedEyeIcon, EyeIcon } from '@app/shared/icons';
 import SignBg from '@app/shared/images/SignBG.png';
 import { Controller, useForm } from 'react-hook-form';
-import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '@app/app/firebase';
-import { login } from '@app/features/auth/authSlice';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { useAppDispatch } from '@app/app/hooks';
+import { login } from '@app/features/auth/authSlice';
 import type { UserAuth } from '@app/shared/types';
 
+const nameErrorMessage = 'Имя не может быть пустым';
 const emailErrorMessage = 'Неккоректный email';
 const passwordErrorMessage = 'Пароль не может быть пустым';
 
-export const SignInPage = () => {
+export const SignUpPage = () => {
   const [togglePassword, setTogglePassword] = useState(true);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -39,27 +40,29 @@ export const SignInPage = () => {
     formState: { errors, isSubmitting },
   } = useForm({
     defaultValues: {
+      name: '',
       email: '',
       password: '',
     },
   });
-  const onSubmit = async (data: UserAuth) => {
-    await signInWithEmailAndPassword(auth, data.email, data.password)
+
+  const onSubmit = async (data: UserAuth) =>
+    await createUserWithEmailAndPassword(auth, data.email, data.password)
       .then(userCredential => {
         const user = userCredential.user;
 
+        updateProfile(user, { displayName: data.name });
         localStorage.setItem('user', JSON.stringify(user));
         dispatch(login());
         navigate('/');
       })
       .catch(() => {
-        setError('root', { message: 'Неверный логин или пароль' });
+        setError('root', { message: 'Почта уже используется' });
         setTimeout(
           () => reset(undefined, { keepValues: true, keepDirty: false }),
           3000,
         );
       });
-  };
 
   return (
     <Flex
@@ -78,7 +81,36 @@ export const SignInPage = () => {
         borderRadius="0.9375rem"
       >
         <VStack as="form" onSubmit={handleSubmit(onSubmit)} gap={0}>
-          <Heading>Вход</Heading>
+          <Heading>Регистрация</Heading>
+          <Controller
+            name="name"
+            control={control}
+            rules={{
+              required: true,
+            }}
+            render={({ field }) => (
+              <FormControl mt="1rem" isInvalid={!!errors.name} pos="relative">
+                {errors.name && (
+                  <FormErrorMessage
+                    pos="absolute"
+                    fontSize="1rem"
+                    color="secondary.red"
+                    mt="-1rem"
+                  >
+                    {nameErrorMessage}
+                  </FormErrorMessage>
+                )}
+                <Input
+                  mt="0.5rem"
+                  variant="solid"
+                  placeholder="Имя"
+                  type="text"
+                  borderColor={errors.name && 'secondary.red'}
+                  {...field}
+                />
+              </FormControl>
+            )}
+          />
           <Controller
             name="email"
             control={control}
@@ -158,16 +190,16 @@ export const SignInPage = () => {
             mt="1rem"
             isLoading={isSubmitting}
           >
-            {errors.root?.message || 'Войти на сайт'}
+            {errors.root?.message || 'Регистрация'}
           </Button>
           <Button as={RouterLink} to="/" width="100%" py="1.5rem" mt="1rem">
             Продолжить как гость
           </Button>
 
           <Flex mt="2rem" justify="center">
-            <Text>Нет аккаунта? </Text>
-            <Link pl="0.625rem" as={RouterLink} to="/sign-up">
-              Регистрация
+            <Text>Есть аккаунт? </Text>
+            <Link pl="0.625rem" as={RouterLink} to="/sign-in">
+              Войти
             </Link>
           </Flex>
         </VStack>
