@@ -22,13 +22,12 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '@app/app/firebase';
 import { login } from '@app/features/auth/authSlice';
 import { useAppDispatch } from '@app/app/hooks';
-import type { FC } from 'react';
 import type { UserAuth } from '@app/shared/types';
 
 const emailErrorMessage = 'Неккоректный email';
 const passwordErrorMessage = 'Пароль не может быть пустым';
 
-export const SignInPage: FC = () => {
+export const SignInPage = () => {
   const [togglePassword, setTogglePassword] = useState(true);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -48,6 +47,7 @@ export const SignInPage: FC = () => {
     await signInWithEmailAndPassword(auth, data.email, data.password)
       .then(userCredential => {
         const user = userCredential.user;
+
         localStorage.setItem('user', JSON.stringify(user));
         dispatch(login());
         navigate('/');

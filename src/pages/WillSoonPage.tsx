@@ -4,9 +4,8 @@ import { signOut } from 'firebase/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '@app/app/hooks';
 import { logout } from '@app/features/auth/authSlice';
-import type { FC } from 'react';
 
-export const WillSoon: FC = () => {
+export const WillSoon = () => {
   const dispatch = useAppDispatch();
   const isAuth = useAppSelector(state => state.auth.value);
   const navigate = useNavigate();
@@ -17,6 +16,7 @@ export const WillSoon: FC = () => {
       navigate('/sign-in');
     });
   };
+
   return (
     <VStack mt="5rem">
       <Heading>Will be soon</Heading>

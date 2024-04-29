@@ -50,6 +50,7 @@ export const SignUpPage = () => {
     await createUserWithEmailAndPassword(auth, data.email, data.password)
       .then(userCredential => {
         const user = userCredential.user;
+
         updateProfile(user, { displayName: data.name });
         localStorage.setItem('user', JSON.stringify(user));
         dispatch(login());

@@ -9,4 +9,5 @@ const userRoutes: RouteObject[] = [
   { path: '/favorites', element: <WillSoon /> },
   { path: '*', element: <Navigate to="/" /> },
 ];
+
 export const userRouter = createBrowserRouter(userRoutes);

@@ -22,6 +22,16 @@
     "no-console": "warn",
     "import/prefer-default-export": "off",
     "no-unused-expressions": "error",
+    "padding-line-between-statements": [
+      "error",
+      { "blankLine": "always", "prev": "*", "next": "return" },
+      { "blankLine": "always", "prev": ["const", "let", "var"], "next": "*" },
+      {
+        "blankLine": "any",
+        "prev": ["const", "let", "var"],
+        "next": ["const", "let", "var"]
+      }
+    ],
     "no-restricted-exports": [
       "error",
       { "restrictDefaultExports": { "direct": true } }
