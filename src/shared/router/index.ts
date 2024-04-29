@@ -1,2 +1,2 @@
-export * from './guest-router';
-export * from './user-router';
+export * from './guestRouter';
+export * from './userRouter';
