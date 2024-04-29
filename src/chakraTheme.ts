@@ -71,6 +71,7 @@ export const theme = extendTheme({
       lightBlack: '#1B1A1A',
       lightLightBlack: '#282626',
       red: '#CD4945',
+      darkRed: '#8F3330',
     },
   },
 });

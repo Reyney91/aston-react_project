@@ -14,12 +14,12 @@ export const Button = defineStyleConfig({
     },
     md: {
       px: '0.75rem',
-      fontSize: '1rem',
+      fontSize: '1.25rem',
       h: '2rem',
     },
     lg: {
       px: '1.5rem',
-      fontSize: '1rem',
+      fontSize: '1.25rem',
       h: '3rem',
     },
   },
@@ -47,9 +47,21 @@ export const Button = defineStyleConfig({
         bg: 'secondary.darkDarkGray',
       },
       _active: {
-        bg: 'main.green',
+        bg: 'secondary.darkGreen',
         color: 'main.black',
         borderColor: 'main.green',
+      },
+    },
+    destructive: {
+      borderRadius: '6px',
+      fontWeight: '400',
+      bg: 'secondary.red',
+      color: 'main.white',
+      _hover: {
+        bg: 'secondary.darkRed',
+      },
+      _active: {
+        bg: 'secondary.darkGray',
       },
     },
   },
