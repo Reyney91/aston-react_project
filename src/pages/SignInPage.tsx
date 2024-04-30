@@ -44,21 +44,23 @@ export const SignInPage = () => {
     },
   });
   const onSubmit = async (data: UserAuth) => {
-    await signInWithEmailAndPassword(auth, data.email, data.password)
-      .then(userCredential => {
-        const user = userCredential.user;
-
-        localStorage.setItem('user', JSON.stringify(user));
-        dispatch(login());
-        navigate('/');
-      })
-      .catch(() => {
-        setError('root', { message: 'Неверный логин или пароль' });
-        setTimeout(
-          () => reset(undefined, { keepValues: true, keepDirty: false }),
-          3000,
-        );
-      });
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password,
+      );
+      const user = userCredential.user;
+      localStorage.setItem('user', JSON.stringify(user));
+      dispatch(login());
+      navigate('/');
+    } catch {
+      setError('root', { message: 'Неверный логин или пароль' });
+      setTimeout(
+        () => reset(undefined, { keepValues: true, keepDirty: false }),
+        3000,
+      );
+    }
   };
 
   return (
