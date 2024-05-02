@@ -19,8 +19,9 @@ export const HeaderLink = ({
   const location = useLocation();
   const isActive = location.pathname.startsWith(path);
   const activeProps = onActiveProps ? onActiveProps(isActive) : undefined;
-  const styles = () =>
-    isActive ? { color: 'main.white' } : { color: 'secondary.gray' };
+  const styles = isActive
+    ? { color: 'main.white' }
+    : { color: 'secondary.gray' };
 
   return (
     <Link
