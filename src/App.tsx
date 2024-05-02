@@ -7,7 +7,7 @@ import { useAppSelector } from './app/hooks';
 import './App.css';
 
 export const App = () => {
-  const isAuth = useAppSelector(state => state.auth.value);
+  const isAuth = useAppSelector(state => state.auth.isAuth);
   const router = useMemo(() => {
     return isAuth ? userRouter : guestRouter;
   }, [isAuth]);

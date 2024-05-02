@@ -10,7 +10,8 @@ import { HeaderLink } from './HeaderLink';
 export const Header = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const isAuth = useAppSelector(state => state.auth.value);
+  const isAuth = useAppSelector(state => state.auth.isAuth);
+  const userName = useAppSelector(state => state.auth.user?.displayName);
 
   const handleLogout = () => {
     signOut(auth).then(() => {
@@ -48,7 +49,7 @@ export const Header = () => {
       {isAuth ? (
         <Box as={Flex}>
           <HeaderLink
-            path="profile"
+            path="/profile"
             onActiveProps={isActive =>
               isActive ? { color: 'main.green' } : undefined
             }
@@ -56,7 +57,7 @@ export const Header = () => {
             <Box>
               <Avatar w="3rem" h="3rem" src="" display="block" />
             </Box>
-            <Text pl="1rem">{auth.currentUser?.displayName}</Text>
+            <Text pl="1rem">{userName}</Text>
           </HeaderLink>
 
           <HeaderLink

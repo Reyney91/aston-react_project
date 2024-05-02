@@ -52,7 +52,7 @@ export const SignInPage = () => {
       );
       const user = userCredential.user;
       localStorage.setItem('user', JSON.stringify(user));
-      dispatch(login());
+      dispatch(login(user));
       navigate('/');
     } catch {
       setError('root', { message: 'Неверный логин или пароль' });

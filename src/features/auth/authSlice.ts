@@ -1,24 +1,29 @@
 import { createSlice } from '@reduxjs/toolkit';
+import type { User } from 'firebase/auth';
 import type { RootState } from '@app/app/store/store';
 
-export interface CounterState {
-  value: boolean;
+export interface AuthState {
+  isAuth: boolean;
+  user: User | null;
 }
 
 // Define the initial state using that type
-const initialState: CounterState = {
-  value: !!localStorage.getItem('user'),
+const initialState: AuthState = {
+  isAuth: !!localStorage.getItem('user'),
+  user: JSON.parse(localStorage.getItem('user') || 'null'),
 };
 
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    login: state => {
-      state.value = true;
+    login: (state, action) => {
+      state.user = action.payload;
+      state.isAuth = true;
     },
     logout: state => {
-      state.value = false;
+      state.user = null;
+      state.isAuth = false;
     },
   },
 });

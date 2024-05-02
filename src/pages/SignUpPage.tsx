@@ -56,7 +56,7 @@ export const SignUpPage = () => {
       const user = userCredential.user;
       await updateProfile(user, { displayName: data.name });
       localStorage.setItem('user', JSON.stringify(user));
-      dispatch(login());
+      dispatch(login(user));
       navigate('/');
     } catch {
       setError('root', { message: 'Почта уже используется' });
