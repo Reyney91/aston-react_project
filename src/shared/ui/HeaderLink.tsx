@@ -1,5 +1,4 @@
 import { Link } from '@chakra-ui/react';
-import { useMemo } from 'react';
 import { useLocation, Link as RouterLink } from 'react-router-dom';
 import type { LinkProps } from '@chakra-ui/react';
 import type { ReactNode } from 'react';
@@ -20,9 +19,9 @@ export const HeaderLink = ({
   const location = useLocation();
   const isActive = location.pathname.startsWith(path);
   const activeProps = onActiveProps ? onActiveProps(isActive) : undefined;
-  const styles = useMemo(() => {
+  const styles = () => {
     return isActive ? { color: 'main.white' } : { color: 'secondary.gray' };
-  }, [isActive]);
+  };
 
   return (
     <Link
