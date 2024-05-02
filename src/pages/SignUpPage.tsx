@@ -46,23 +46,26 @@ export const SignUpPage = () => {
     },
   });
 
-  const onSubmit = async (data: UserAuth) =>
-    await createUserWithEmailAndPassword(auth, data.email, data.password)
-      .then(userCredential => {
-        const user = userCredential.user;
-
-        updateProfile(user, { displayName: data.name });
-        localStorage.setItem('user', JSON.stringify(user));
-        dispatch(login());
-        navigate('/');
-      })
-      .catch(() => {
-        setError('root', { message: 'Почта уже используется' });
-        setTimeout(
-          () => reset(undefined, { keepValues: true, keepDirty: false }),
-          3000,
-        );
-      });
+  const onSubmit = async (data: UserAuth) => {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password,
+      );
+      const user = userCredential.user;
+      await updateProfile(user, { displayName: data.name });
+      localStorage.setItem('user', JSON.stringify(user));
+      dispatch(login(user));
+      navigate('/');
+    } catch {
+      setError('root', { message: 'Почта уже используется' });
+      setTimeout(
+        () => reset(undefined, { keepValues: true, keepDirty: false }),
+        3000,
+      );
+    }
+  };
 
   return (
     <Flex
