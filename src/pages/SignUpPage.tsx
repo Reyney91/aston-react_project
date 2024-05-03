@@ -21,7 +21,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { auth } from '@app/app/firebase';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { useAppDispatch } from '@app/app/hooks';
-import { login } from '@app/features/auth/authSlice';
+import { login } from '@app/app/store/authSlice';
 import type { UserAuth } from '@app/shared/types';
 
 const nameErrorMessage = 'Имя не может быть пустым';
@@ -56,7 +56,13 @@ export const SignUpPage = () => {
       const user = userCredential.user;
       await updateProfile(user, { displayName: data.name });
       localStorage.setItem('user', JSON.stringify(user));
-      dispatch(login(user));
+      dispatch(
+        login({
+          displayName: user.displayName,
+          email: user.email,
+          photoUrl: user.photoURL,
+        }),
+      );
       navigate('/');
     } catch {
       setError('root', { message: 'Почта уже используется' });

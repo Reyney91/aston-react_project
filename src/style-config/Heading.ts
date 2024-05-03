@@ -10,7 +10,7 @@ export const Heading = defineStyleConfig({
       lineHeight: '150%',
     },
     md: {
-      fontSize: '1.125rem',
+      fontSize: '1.25rem',
       lineHeight: '150%',
     },
     lg: {
@@ -19,7 +19,7 @@ export const Heading = defineStyleConfig({
       lineHeight: '150%',
     },
     xl: {
-      fontSize: '1.5rem',
+      fontSize: '2rem',
       fontWeight: 700,
       letterSpacing: '0.045rem',
       lineHeight: '150%',
@@ -27,10 +27,10 @@ export const Heading = defineStyleConfig({
   },
   variants: {
     listItemHeading: {
-      fontWeight: 400,
+      fontWeight: 600,
       color: 'secondary.gray',
       pt: '1.25rem',
-      fontSize: '1rem',
+      fontSize: '1.5rem',
       lineHeight: '150%',
     },
     surfaceHeading: {

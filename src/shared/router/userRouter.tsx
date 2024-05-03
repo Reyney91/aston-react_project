@@ -1,6 +1,6 @@
-import { WillSoon } from '@app/pages';
+import { ProfilePage, WillSoon } from '@app/pages';
+import { HeaderLayout } from '@app/widgets';
 import { Navigate, createBrowserRouter } from 'react-router-dom';
-import { HeaderLayout } from '../ui/HeaderLayout';
 import type { RouteObject } from 'react-router-dom';
 
 const userRoutes: RouteObject[] = [
@@ -10,7 +10,7 @@ const userRoutes: RouteObject[] = [
     children: [
       { path: '/films', element: <WillSoon /> },
       { path: '/store', element: <WillSoon /> },
-      { path: '/profile', element: <WillSoon /> },
+      { path: '/profile', element: <ProfilePage /> },
     ],
   },
   { path: '/favorites', element: <WillSoon /> },
