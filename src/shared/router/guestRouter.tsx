@@ -1,6 +1,6 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { SignInPage, WillSoon, SignUpPage } from '@app/pages';
-import { HeaderLayout } from '../ui/HeaderLayout';
+import { HeaderLayout } from '@app/widgets';
 import type { RouteObject } from 'react-router-dom';
 
 const guestRoutes: RouteObject[] = [

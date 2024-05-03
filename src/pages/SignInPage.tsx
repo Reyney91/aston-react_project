@@ -20,7 +20,7 @@ import SignBg from '@app/shared/images/SignBG.png';
 import { Controller, useForm } from 'react-hook-form';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '@app/app/firebase';
-import { login } from '@app/features/auth/authSlice';
+import { login } from '@app/app/store/authSlice';
 import { useAppDispatch } from '@app/app/hooks';
 import type { UserAuth } from '@app/shared/types';
 
@@ -52,7 +52,13 @@ export const SignInPage = () => {
       );
       const user = userCredential.user;
       localStorage.setItem('user', JSON.stringify(user));
-      dispatch(login(user));
+      dispatch(
+        login({
+          displayName: user.displayName,
+          email: user.email,
+          photoUrl: user.photoURL,
+        }),
+      );
       navigate('/');
     } catch {
       setError('root', { message: 'Неверный логин или пароль' });

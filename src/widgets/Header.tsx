@@ -1,17 +1,17 @@
 import { Avatar, Box, Flex, List, ListItem, Text } from '@chakra-ui/react';
 import { auth } from '@app/app/firebase';
 import { useAppDispatch, useAppSelector } from '@app/app/hooks';
-import { logout } from '@app/features/auth/authSlice';
+import { logout } from '@app/app/store/authSlice';
 import { signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import { EnterIcon, ExitIcon, FilmsIcon, StoreIcon } from '../icons';
-import { HeaderLink } from './HeaderLink';
+import { EnterIcon, ExitIcon, FilmsIcon, StoreIcon } from '../shared/icons';
+import { HeaderLink } from '../shared/ui';
 
 export const Header = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const isAuth = useAppSelector(state => state.auth.isAuth);
-  const userName = useAppSelector(state => state.auth.user?.displayName);
+  const user = useAppSelector(state => state.auth.user);
 
   const handleLogout = () => {
     signOut(auth).then(() => {
@@ -55,9 +55,9 @@ export const Header = () => {
             }
           >
             <Box>
-              <Avatar w="3rem" h="3rem" src="" display="block" />
+              <Avatar w="3rem" h="3rem" src={user?.photoURL} display="block" />
             </Box>
-            <Text pl="1rem">{userName}</Text>
+            <Text pl="1rem">{user?.displayName}</Text>
           </HeaderLink>
 
           <HeaderLink

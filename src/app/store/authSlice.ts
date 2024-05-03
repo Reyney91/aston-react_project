@@ -1,6 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import type { User } from 'firebase/auth';
 import type { RootState } from '@app/app/store/store';
+
+interface User {
+  displayName: string;
+  photoURL: string;
+  email: string;
+}
 
 export interface AuthState {
   isAuth: boolean;
@@ -25,9 +30,12 @@ export const authSlice = createSlice({
       state.user = null;
       state.isAuth = false;
     },
+    update: (state, action) => {
+      state.user = { ...state.user, ...action.payload };
+    },
   },
 });
-export const { login, logout } = authSlice.actions;
+export const { login, logout, update } = authSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
 export const isAuth = (state: RootState) => state.auth;

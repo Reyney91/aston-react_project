@@ -5,3 +5,5 @@ export * from './ExitIcon';
 export * from './EnterIcon';
 export * from './FilmsIcon';
 export * from './StoreIcon';
+export * from './EditIcon';
+export * from './CloseIcon';
