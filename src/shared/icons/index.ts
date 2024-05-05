@@ -4,6 +4,7 @@ export * from './LoadingIcon';
 export * from './ExitIcon';
 export * from './EnterIcon';
 export * from './FilmsIcon';
-export * from './StoreIcon';
+export * from './StarIcon';
 export * from './EditIcon';
 export * from './CloseIcon';
+export * from './SearchIcon';

@@ -4,7 +4,7 @@ import { Header } from './Header';
 
 export const HeaderLayout = () => (
   <>
-    <Box as="header" position="fixed">
+    <Box as="header" position="fixed" zIndex={3}>
       <Header />
     </Box>
 

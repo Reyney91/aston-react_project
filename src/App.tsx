@@ -3,11 +3,11 @@ import { RouterProvider } from 'react-router-dom';
 import { useMemo } from 'react';
 import { theme } from './chakraTheme';
 import { guestRouter, userRouter } from './shared/router';
-import { useAppSelector } from './app/hooks';
 import './App.css';
+import { useAuth } from './app/hooks';
 
 export const App = () => {
-  const isAuth = useAppSelector(state => state.auth.isAuth);
+  const { isAuth } = useAuth();
   const router = useMemo(() => {
     return isAuth ? userRouter : guestRouter;
   }, [isAuth]);

@@ -3,10 +3,9 @@ import { useLocation, Link as RouterLink } from 'react-router-dom';
 import type { LinkProps } from '@chakra-ui/react';
 import type { ReactNode } from 'react';
 
-export type HeaderLinkProps = {
+type HeaderLinkProps = {
   path: string;
   children: ReactNode;
-  isNavItem?: boolean;
   onActiveProps?: (isActive: boolean) => LinkProps | undefined;
 } & LinkProps;
 

@@ -18,10 +18,7 @@ import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { ClosedEyeIcon, EyeIcon } from '@app/shared/icons';
 import SignBg from '@app/shared/images/SignBG.png';
 import { Controller, useForm } from 'react-hook-form';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '@app/app/firebase';
-import { login } from '@app/app/store/authSlice';
-import { useAppDispatch } from '@app/app/hooks';
+import { useAuth } from '@app/app/hooks';
 import type { UserAuth } from '@app/shared/types';
 
 const emailErrorMessage = 'Неккоректный email';
@@ -29,7 +26,7 @@ const passwordErrorMessage = 'Пароль не может быть пустым
 
 export const SignInPage = () => {
   const [togglePassword, setTogglePassword] = useState(true);
-  const dispatch = useAppDispatch();
+  const { signIn } = useAuth();
   const navigate = useNavigate();
   const {
     handleSubmit,
@@ -45,20 +42,7 @@ export const SignInPage = () => {
   });
   const onSubmit = async (data: UserAuth) => {
     try {
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        data.email,
-        data.password,
-      );
-      const user = userCredential.user;
-      localStorage.setItem('user', JSON.stringify(user));
-      dispatch(
-        login({
-          displayName: user.displayName,
-          email: user.email,
-          photoUrl: user.photoURL,
-        }),
-      );
+      await signIn(data);
       navigate('/');
     } catch {
       setError('root', { message: 'Неверный логин или пароль' });

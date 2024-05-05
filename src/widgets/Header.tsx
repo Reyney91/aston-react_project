@@ -1,53 +1,33 @@
 import { Avatar, Box, Flex, List, ListItem, Text } from '@chakra-ui/react';
-import { auth } from '@app/app/firebase';
-import { useAppDispatch, useAppSelector } from '@app/app/hooks';
-import { logout } from '@app/app/store/authSlice';
-import { signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import { EnterIcon, ExitIcon, FilmsIcon, StoreIcon } from '../shared/icons';
+import { useAuth } from '@app/app/hooks';
+import { EnterIcon, ExitIcon, FilmsIcon, StarIcon } from '../shared/icons';
 import { HeaderLink } from '../shared/ui';
 
 export const Header = () => {
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const isAuth = useAppSelector(state => state.auth.isAuth);
-  const user = useAppSelector(state => state.auth.user);
-
-  const handleLogout = () => {
-    signOut(auth).then(() => {
-      localStorage.clear();
-      dispatch(logout());
-      navigate('sign-in');
-    });
+  const { isAuth, authUser, logOut } = useAuth();
+  const handleLogout = async () => {
+    await logOut();
+    navigate('sign-in');
   };
 
   return (
     <Flex
       pos="fixed"
       minW="100vw"
-      zIndex={2}
       bgColor="#1B1A1A"
       justifyContent="space-around"
       h="5.5rem"
     >
-      <Box>
-        <List as={Flex} height="100%">
-          <ListItem height="100%">
-            <HeaderLink path="/films">
-              <FilmsIcon />
-              <Text pl="1rem">Фильмы</Text>
-            </HeaderLink>
-          </ListItem>
-          <ListItem ml="1rem">
-            <HeaderLink path="/store">
-              <StoreIcon />
-              <Text pl="1rem">Магазин</Text>
-            </HeaderLink>
-          </ListItem>
-        </List>
+      <Box height="100%">
+        <HeaderLink path="/films">
+          <FilmsIcon />
+          <Text pl="1rem">Фильмы</Text>
+        </HeaderLink>
       </Box>
       {isAuth ? (
-        <Box as={Flex}>
+        <List as={Flex} height="100%">
           <HeaderLink
             path="/profile"
             onActiveProps={isActive =>
@@ -55,11 +35,21 @@ export const Header = () => {
             }
           >
             <Box>
-              <Avatar w="3rem" h="3rem" src={user?.photoURL} display="block" />
+              <Avatar
+                w="3rem"
+                h="3rem"
+                src={authUser?.photoURL}
+                display="block"
+              />
             </Box>
-            <Text pl="1rem">{user?.displayName}</Text>
+            <Text pl="1rem">{authUser?.displayName}</Text>
           </HeaderLink>
-
+          <ListItem ml="1rem">
+            <HeaderLink path="/store">
+              <StarIcon />
+              <Text pl="1rem">Избранное</Text>
+            </HeaderLink>
+          </ListItem>
           <HeaderLink
             border="none"
             onClick={handleLogout}
@@ -69,7 +59,7 @@ export const Header = () => {
             <ExitIcon />
             <Text pl="1rem">Выйти из аккаунта</Text>
           </HeaderLink>
-        </Box>
+        </List>
       ) : (
         <HeaderLink path="/sign-in" border="none">
           <EnterIcon />

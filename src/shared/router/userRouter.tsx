@@ -1,4 +1,4 @@
-import { ProfilePage, WillSoon } from '@app/pages';
+import { FilmsPage, ProfilePage, WillSoon } from '@app/pages';
 import { HeaderLayout } from '@app/widgets';
 import { Navigate, createBrowserRouter } from 'react-router-dom';
 import type { RouteObject } from 'react-router-dom';
@@ -8,7 +8,7 @@ const userRoutes: RouteObject[] = [
     path: '/',
     element: <HeaderLayout />,
     children: [
-      { path: '/films', element: <WillSoon /> },
+      { path: '/films', element: <FilmsPage /> },
       { path: '/store', element: <WillSoon /> },
       { path: '/profile', element: <ProfilePage /> },
     ],

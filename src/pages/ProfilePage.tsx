@@ -1,5 +1,5 @@
-import { useAppSelector } from '@app/app/hooks';
-import { ProfileEdit } from '@app/features/ProfileEdit';
+import { useAuth } from '@app/app/hooks';
+import { ProfileEdit } from '@app/features';
 import { EditIcon } from '@app/shared/icons';
 import {
   Avatar,
@@ -16,7 +16,7 @@ import {
 } from '@chakra-ui/react';
 
 export const ProfilePage = () => {
-  const user = useAppSelector(state => state.auth.user);
+  const { authUser } = useAuth();
   const editProfileDisclosure = useDisclosure();
 
   return (
@@ -29,7 +29,7 @@ export const ProfilePage = () => {
         <Flex px="2rem" pb="1.25rem">
           <Flex flexDir="column">
             <Box px="1.875rem" py="1.25rem">
-              <Avatar src={user?.photoURL} size="2xl" />
+              <Avatar src={authUser?.photoURL} size="2xl" />
             </Box>
             <Button h="2rem" pr="0.5rem" onClick={editProfileDisclosure.onOpen}>
               Редактировать <EditIcon />
@@ -40,13 +40,13 @@ export const ProfilePage = () => {
             <ListItem>
               <Heading variant="listItemHeading">Имя:</Heading>
               <Text pt="0.5rem" fontSize="1.25rem" wordBreak="break-word">
-                {user?.displayName}
+                {authUser?.displayName}
               </Text>
             </ListItem>
             <ListItem>
               <Heading variant="listItemHeading">Почта:</Heading>
               <Text pt="0.5rem" fontSize="1.25rem" wordBreak="break-word">
-                {user?.email}
+                {authUser?.email}
               </Text>
             </ListItem>
           </List>

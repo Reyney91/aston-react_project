@@ -1,5 +1,5 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
-import { SignInPage, WillSoon, SignUpPage } from '@app/pages';
+import { SignInPage, WillSoon, SignUpPage, FilmsPage } from '@app/pages';
 import { HeaderLayout } from '@app/widgets';
 import type { RouteObject } from 'react-router-dom';
 
@@ -10,7 +10,7 @@ const guestRoutes: RouteObject[] = [
     path: '/',
     element: <HeaderLayout />,
     children: [
-      { path: '/films', element: <WillSoon /> },
+      { path: '/films', element: <FilmsPage /> },
       { path: '/store', element: <WillSoon /> },
       {
         path: '*',
