@@ -42,11 +42,10 @@ export const SignUpPage = () => {
       password: '',
     },
   });
-
   const onSubmit = async (data: UserAuth) => {
     try {
       await signUp(data);
-      navigate('/');
+      navigate('/films');
     } catch {
       setError('root', { message: 'Почта уже используется' });
       setTimeout(

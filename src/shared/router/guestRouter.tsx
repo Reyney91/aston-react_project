@@ -1,20 +1,27 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
-import { SignInPage, WillSoon, SignUpPage, FilmsPage } from '@app/pages';
+import {
+  SignInPage,
+  WillSoon,
+  SignUpPage,
+  FilmsPage,
+  ErrorPage,
+} from '@app/pages';
 import { HeaderLayout } from '@app/widgets';
 import type { RouteObject } from 'react-router-dom';
 
 const guestRoutes: RouteObject[] = [
-  { path: '/sign-in', element: <SignInPage /> },
-  { path: '/sign-up', element: <SignUpPage /> },
+  { path: '/sign-in', element: <SignInPage />, errorElement: <ErrorPage /> },
+  { path: '/sign-up', element: <SignUpPage />, errorElement: <ErrorPage /> },
   {
     path: '/',
     element: <HeaderLayout />,
+    errorElement: <ErrorPage />,
     children: [
       { path: '/films', element: <FilmsPage /> },
       { path: '/store', element: <WillSoon /> },
       {
         path: '*',
-        element: <div>404</div>,
+        element: <Navigate to="/sign-in" />,
       },
     ],
   },

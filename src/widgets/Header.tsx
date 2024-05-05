@@ -45,7 +45,7 @@ export const Header = () => {
             <Text pl="1rem">{authUser?.displayName}</Text>
           </HeaderLink>
           <ListItem ml="1rem">
-            <HeaderLink path="/store">
+            <HeaderLink path="/favorites">
               <StarIcon />
               <Text pl="1rem">Избранное</Text>
             </HeaderLink>

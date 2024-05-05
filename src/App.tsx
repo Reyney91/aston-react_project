@@ -3,7 +3,6 @@ import { RouterProvider } from 'react-router-dom';
 import { useMemo } from 'react';
 import { theme } from './chakraTheme';
 import { guestRouter, userRouter } from './shared/router';
-import './App.css';
 import { useAuth } from './app/hooks';
 
 export const App = () => {

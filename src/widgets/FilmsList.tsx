@@ -262,9 +262,8 @@ export const FilmsList = () => {
       mt="2rem"
     >
       {films.map(film => (
-        <ListItem>
+        <ListItem key={film.kinopoiskId}>
           <FilmLink
-            key={film.kinopoiskId}
             imagePath={film.posterUrlPreview}
             imageAlt={film.nameRu || film.nameOriginal || undefined}
             name={film.nameRu || film.nameOriginal || film.nameEn || ''}
