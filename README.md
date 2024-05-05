@@ -1,4 +1,5 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/9f60a7bd-a16e-4c7a-9524-e8eca97efd28/deploy-status)](https://app.netlify.com/sites/aston-reactproject/deploys)
+![workflow](https://github.com/Reyney91/aston-react_project/actions/workflows/main.yml/badge.svg)
 
 # Films project
 
