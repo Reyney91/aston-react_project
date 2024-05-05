@@ -24,7 +24,7 @@ import type { UserAuth } from '@app/shared/types';
 const emailErrorMessage = 'Неккоректный email';
 const passwordErrorMessage = 'Пароль не может быть пустым';
 
-export const SignInPage = () => {
+const SignInPage = () => {
   const [togglePassword, setTogglePassword] = useState(true);
   const { signIn } = useAuth();
   const navigate = useNavigate();
@@ -167,3 +167,4 @@ export const SignInPage = () => {
     </Flex>
   );
 };
+export { SignInPage as default };

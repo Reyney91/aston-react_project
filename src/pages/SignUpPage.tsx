@@ -25,7 +25,7 @@ const nameErrorMessage = 'Имя не может быть пустым';
 const emailErrorMessage = 'Неккоректный email';
 const passwordErrorMessage = 'Пароль не может быть пустым';
 
-export const SignUpPage = () => {
+const SignUpPage = () => {
   const [togglePassword, setTogglePassword] = useState(true);
   const { signUp } = useAuth();
   const navigate = useNavigate();
@@ -198,3 +198,5 @@ export const SignUpPage = () => {
     </Flex>
   );
 };
+
+export { SignUpPage as default };

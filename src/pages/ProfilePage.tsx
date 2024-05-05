@@ -15,7 +15,7 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 
-export const ProfilePage = () => {
+const ProfilePage = () => {
   const { authUser } = useAuth();
   const editProfileDisclosure = useDisclosure();
 
@@ -55,3 +55,4 @@ export const ProfilePage = () => {
     </Box>
   );
 };
+export { ProfilePage as default };
