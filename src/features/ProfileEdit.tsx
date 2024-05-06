@@ -15,11 +15,8 @@ import {
   FormErrorMessage,
 } from '@chakra-ui/react';
 import { Controller, useForm } from 'react-hook-form';
-import { updateProfile } from 'firebase/auth';
 import { CloseIcon } from '@app/shared/icons';
-import { auth } from '@app/app/firebase';
-import { useAppDispatch, useAppSelector } from '@app/app/hooks';
-import { update } from '@app/app/store/authSlice';
+import { useAuth } from '@app/app/hooks';
 import type { UseDisclosureReturn } from '@chakra-ui/react';
 
 export type EditProfileProps = {
@@ -27,8 +24,7 @@ export type EditProfileProps = {
 };
 
 export const ProfileEdit = ({ disclosure }: EditProfileProps) => {
-  const user = useAppSelector(state => state.auth.user);
-  const dispatch = useAppDispatch();
+  const { authUser, updateAuthUser } = useAuth();
 
   const {
     handleSubmit,
@@ -38,8 +34,8 @@ export const ProfileEdit = ({ disclosure }: EditProfileProps) => {
     formState: { errors, isSubmitting },
   } = useForm({
     defaultValues: {
-      name: user?.displayName,
-      avatarUrl: user?.photoURL || '',
+      name: authUser?.displayName,
+      avatarUrl: authUser?.photoURL || '',
     },
   });
 
@@ -48,20 +44,8 @@ export const ProfileEdit = ({ disclosure }: EditProfileProps) => {
     avatarUrl: string | undefined;
   }) => {
     try {
-      if (auth.currentUser) {
-        await updateProfile(auth.currentUser, {
-          displayName: data.name,
-          photoURL: data.avatarUrl,
-        });
-        localStorage.setItem('user', JSON.stringify(auth.currentUser));
-        dispatch(
-          update({
-            displayName: auth.currentUser.displayName,
-            photoURL: auth.currentUser.photoURL || '',
-          }),
-        );
-        disclosure.onClose();
-      }
+      await updateAuthUser(data);
+      disclosure.onClose();
     } catch {
       setError('root', { message: 'Некорректное имя или ссылка' });
       setTimeout(

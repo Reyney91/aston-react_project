@@ -18,19 +18,16 @@ import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { ClosedEyeIcon, EyeIcon } from '@app/shared/icons';
 import SignBg from '@app/shared/images/SignBG.png';
 import { Controller, useForm } from 'react-hook-form';
-import { auth } from '@app/app/firebase';
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import { useAppDispatch } from '@app/app/hooks';
-import { login } from '@app/app/store/authSlice';
+import { useAuth } from '@app/app/hooks';
 import type { UserAuth } from '@app/shared/types';
 
 const nameErrorMessage = 'Имя не может быть пустым';
 const emailErrorMessage = 'Неккоректный email';
 const passwordErrorMessage = 'Пароль не может быть пустым';
 
-export const SignUpPage = () => {
+const SignUpPage = () => {
   const [togglePassword, setTogglePassword] = useState(true);
-  const dispatch = useAppDispatch();
+  const { signUp } = useAuth();
   const navigate = useNavigate();
   const {
     handleSubmit,
@@ -45,25 +42,10 @@ export const SignUpPage = () => {
       password: '',
     },
   });
-
   const onSubmit = async (data: UserAuth) => {
     try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        data.email,
-        data.password,
-      );
-      const user = userCredential.user;
-      await updateProfile(user, { displayName: data.name });
-      localStorage.setItem('user', JSON.stringify(user));
-      dispatch(
-        login({
-          displayName: user.displayName,
-          email: user.email,
-          photoUrl: user.photoURL,
-        }),
-      );
-      navigate('/');
+      await signUp(data);
+      navigate('/films');
     } catch {
       setError('root', { message: 'Почта уже используется' });
       setTimeout(
@@ -216,3 +198,5 @@ export const SignUpPage = () => {
     </Flex>
   );
 };
+
+export { SignUpPage as default };

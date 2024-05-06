@@ -2,7 +2,7 @@ import { Icon } from '@chakra-ui/react';
 import type { IconProps } from '@chakra-ui/react';
 
 export const LoadingIcon = (props: IconProps) => (
-  <Icon w="2.5rem" h="2.5rem" viewBox="0 0 40 40" margin="auto" {...props}>
+  <Icon w="2.5rem" h="2.5rem" viewBox="0 0 20 20" margin="auto" {...props}>
     <path
       d="M17.5 9C17.5 4.30558 13.6944 0.5 9 0.5C4.30558 0.5 0.5 4.30558 0.5 9"
       stroke="currentColor"
