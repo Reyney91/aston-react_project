@@ -1,6 +1,7 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { HeaderLayout } from '@app/widgets';
 import { lazy } from 'react';
+
 import type { RouteObject } from 'react-router-dom';
 
 const SignInPage = lazy(() => import('@app/pages/SignInPage'));
@@ -16,6 +17,7 @@ const guestRoutes: RouteObject[] = [
     path: '/',
     element: <HeaderLayout />,
     errorElement: <ErrorPage />,
+
     children: [
       { path: '/films', element: <FilmsPage /> },
       { path: '/store', element: <WillSoonPage /> },

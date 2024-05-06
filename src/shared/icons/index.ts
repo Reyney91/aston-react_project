@@ -8,3 +8,4 @@ export * from './StarIcon';
 export * from './EditIcon';
 export * from './CloseIcon';
 export * from './SearchIcon';
+export * from './LikeIcon';
