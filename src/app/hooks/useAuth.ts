@@ -14,6 +14,7 @@ export function useAuth() {
   const stateAuth = useAppSelector(state => state.auth);
   const authUser = stateAuth.user;
   const isAuth = stateAuth.isAuth;
+
   const signUp = async (data: UserAuth) => {
     const userCredential = await createUserWithEmailAndPassword(
       auth,
@@ -31,6 +32,7 @@ export function useAuth() {
       }),
     );
   };
+
   const signIn = async (data: UserAuth) => {
     const userCredential = await signInWithEmailAndPassword(
       auth,
@@ -47,11 +49,13 @@ export function useAuth() {
       }),
     );
   };
+
   const logOut = async () => {
     localStorage.clear();
     dispatch(logout());
     await signOut(auth);
   };
+
   const updateAuthUser = async (data: {
     name: string | undefined;
     avatarUrl: string | undefined;
