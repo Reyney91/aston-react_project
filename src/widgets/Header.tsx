@@ -1,15 +1,12 @@
 import { Avatar, Box, Flex, List, ListItem, Text } from '@chakra-ui/react';
-import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@app/app/hooks';
 import { EnterIcon, ExitIcon, FilmsIcon, StarIcon } from '../shared/icons';
 import { HeaderLink } from '../shared/ui';
 
 export const Header = () => {
-  const navigate = useNavigate();
   const { isAuth, authUser, logOut } = useAuth();
   const handleLogout = async () => {
     await logOut();
-    navigate('sign-in');
   };
 
   return (

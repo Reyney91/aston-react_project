@@ -1,19 +1,18 @@
 import { ChakraProvider } from '@chakra-ui/react';
-import { RouterProvider } from 'react-router-dom';
-import { useMemo } from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import { ErrorBoundary } from 'react-error-boundary';
 import { theme } from './chakraTheme';
-import { guestRouter, userRouter } from './shared/router';
-import { useAuth } from './app/hooks';
+import { Router } from './shared/router';
+import ErrorPage from './pages/ErrorPage';
 
 export const App = () => {
-  const { isAuth } = useAuth();
-  const router = useMemo(() => {
-    return isAuth ? userRouter : guestRouter;
-  }, [isAuth]);
-
   return (
-    <ChakraProvider theme={theme}>
-      <RouterProvider router={router} />
-    </ChakraProvider>
+    <BrowserRouter>
+      <ChakraProvider theme={theme}>
+        <ErrorBoundary FallbackComponent={ErrorPage}>
+          <Router />
+        </ErrorBoundary>
+      </ChakraProvider>
+    </BrowserRouter>
   );
 };

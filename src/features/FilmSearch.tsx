@@ -13,18 +13,18 @@ export const FilmSearch = ({ ...props }: BoxProps) => {
   const {
     handleSubmit,
     control,
-    formState: { errors, isSubmitting },
+    formState: { isSubmitting },
   } = useForm({
     defaultValues: {
       search: '',
     },
   });
   const onSubmit = async (data: { search: string }) => {
-    try {
-      console.log(data.search);
-    } catch (error) {
-      console.log(error);
-    }
+    // try {
+    //   console.log(data.search);
+    // } catch (error) {
+    //   console.log(error);
+    // } Будет переделано
   };
 
   return (

@@ -18,6 +18,7 @@ import {
 const ProfilePage = () => {
   const { authUser } = useAuth();
   const editProfileDisclosure = useDisclosure();
+  throw new Error('ahah');
 
   return (
     <Box as={ScaleFade} py="2rem" w="fit-content" mx="auto" in>

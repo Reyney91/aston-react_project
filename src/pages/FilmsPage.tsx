@@ -1,7 +1,6 @@
 import { useGetFilmsQuery } from '@app/app/api/apiSlice';
 import { FilmSearch } from '@app/features';
-import { LoadingIcon } from '@app/shared/icons';
-import { FilmsList } from '@app/widgets';
+import { FilmsList, LoadingLayout } from '@app/widgets';
 import { Box, Container, Heading, ScaleFade } from '@chakra-ui/react';
 
 const FilmsPage = () => {
@@ -14,7 +13,7 @@ const FilmsPage = () => {
         <Heading color="main.green" mt="2rem" pl="1rem">
           Каталог фильмов
         </Heading>
-        {isFetching && <LoadingIcon />}
+        {isFetching && <LoadingLayout />}
         {isSuccess && <FilmsList films={data.items} />}
       </Container>
     </Box>
