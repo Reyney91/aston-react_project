@@ -1,11 +1,16 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { transformFilmData } from '@app/utils/transforms/transform-api-data';
+import {
+  transformFilmData,
+  transformSearchedFilmData,
+} from '@app/utils/transforms/transform-api-data';
 import { BASE_API_URL } from './apiConstants';
 import type {
   ApiResponse,
   Film,
+  SearchApiResponse,
   TransformedApiResponse,
   TransformedFilm,
+  TransformedSearchApiResponse,
 } from '@app/shared/types';
 
 export const apiSlice = createApi({
@@ -18,9 +23,9 @@ export const apiSlice = createApi({
     },
   }),
   endpoints: builder => ({
-    getFilms: builder.query<TransformedApiResponse, void>({
+    getAllFilms: builder.query<TransformedApiResponse, void>({
       query: () => ({
-        url: '/api/v2.2/films',
+        url: `/api/v2.2/films`,
       }),
       transformResponse: (response: ApiResponse): TransformedApiResponse => ({
         ...response,
@@ -34,7 +39,25 @@ export const apiSlice = createApi({
       transformResponse: (response: Film): TransformedFilm =>
         transformFilmData(response),
     }),
+    getFilmByKeyword: builder.query<
+      TransformedSearchApiResponse,
+      string | undefined
+    >({
+      query: query => ({
+        url: `/api/v2.1/films/search-by-keyword?keyword=${query}`,
+      }),
+      transformResponse: (
+        response: SearchApiResponse,
+      ): TransformedSearchApiResponse => ({
+        keyword: response.keyword,
+        films: response.films.map(transformSearchedFilmData),
+      }),
+    }),
   }),
 });
 
-export const { useGetFilmsQuery, useGetFilmByIdQuery } = apiSlice;
+export const {
+  useGetAllFilmsQuery,
+  useGetFilmByKeywordQuery,
+  useGetFilmByIdQuery,
+} = apiSlice;

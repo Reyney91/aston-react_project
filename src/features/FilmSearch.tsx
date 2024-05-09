@@ -7,24 +7,27 @@ import {
   InputRightElement,
 } from '@chakra-ui/react';
 import { Controller, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import type { BoxProps } from '@chakra-ui/react';
 
-export const FilmSearch = ({ ...props }: BoxProps) => {
+interface FilmSearchProps extends BoxProps {
+  searchQuery?: string | null;
+}
+
+export const FilmSearch = ({ searchQuery = '', ...props }: FilmSearchProps) => {
+  const navigate = useNavigate();
   const {
     handleSubmit,
     control,
     formState: { isSubmitting },
   } = useForm({
     defaultValues: {
-      search: '',
+      search: searchQuery || '',
     },
   });
   const onSubmit = async (data: { search: string }) => {
-    // try {
-    //   console.log(data.search);
-    // } catch (error) {
-    //   console.log(error);
-    // } Будет переделано
+    const encodeSearchQuery = encodeURIComponent(data.search);
+    navigate(`/search?q=${encodeSearchQuery}`);
   };
 
   return (

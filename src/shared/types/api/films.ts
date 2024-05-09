@@ -13,9 +13,9 @@ export interface Film {
   nameOriginal: string | null;
   countries: Country[];
   genres: Genre[];
-  ratingKinopoisk: number;
-  ratingImdb: number | null;
-  year: number;
+  ratingKinopoisk: string;
+  ratingImdb: string | null;
+  year: string;
   type: string;
   posterUrl: string;
   posterUrlPreview: string;
@@ -26,11 +26,10 @@ export interface TransformedFilm {
   id: number;
   name: string;
   country: string;
-  genre: string;
-  rating: number;
+  rating: string;
   previewPoster: string;
   poster: string;
-  year: number;
+  year: string;
   type: string;
   webUrl?: string;
 }
@@ -48,4 +47,34 @@ export interface ApiResponse {
 export interface TransformedApiResponse {
   pagination: Pagination;
   items: TransformedFilm[];
+}
+
+export interface SearchQuery {
+  search?: string;
+}
+
+export interface SearchApiResponse {
+  keyword: string;
+  films: SearchedFilm[];
+}
+
+export interface SearchedFilm {
+  filmId: number;
+  nameRu: string;
+  nameEn: string;
+  type: string;
+  year: string;
+  description: string;
+  filmLength: string;
+  countries: Country[];
+  genres: Genre[];
+  rating: string;
+  ratingVoteCount: number;
+  posterUrl: string;
+  posterUrlPreview: string;
+}
+
+export interface TransformedSearchApiResponse {
+  keyword: string;
+  films: TransformedFilm[];
 }

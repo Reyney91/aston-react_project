@@ -1,3 +1,4 @@
+import SearchPage from '@app/pages/SearchPage';
 import { lazy } from 'react';
 import type { RouteObject } from 'react-router-dom';
 
@@ -11,11 +12,13 @@ const FilmDetailPage = lazy(() => import('@app/pages/FilmDetailPage'));
 export const publicRoutes: RouteObject[] = [
   { path: '/films', element: <FilmsPage /> },
   { path: '/film/:id', element: <FilmDetailPage /> },
+  { path: '/search', element: <SearchPage /> },
 ];
 
 export const userRoutes: RouteObject[] = [
   { path: '/profile', element: <ProfilePage /> },
   { path: '/favorites', element: <WillSoonPage /> },
+  { path: '/history', element: <WillSoonPage /> },
 ];
 export const guestRoutes: RouteObject[] = [
   { path: '/sign-in', element: <SignInPage /> },
