@@ -8,9 +8,13 @@ export function transformFilmData(film: Film): TransformedFilm {
     nameEn,
     nameOriginal,
     ratingKinopoisk,
+    ratingImdb,
     genres,
     posterUrlPreview,
     posterUrl,
+    year,
+    type,
+    webUrl,
   } = film;
 
   return {
@@ -18,8 +22,11 @@ export function transformFilmData(film: Film): TransformedFilm {
     name: nameRu || nameEn || nameOriginal || '',
     country: countries[0].country,
     genre: genres[0].genre,
-    rating: ratingKinopoisk,
+    rating: ratingImdb || ratingKinopoisk,
     previewPoster: posterUrlPreview,
     poster: posterUrl,
+    year,
+    type,
+    webUrl,
   };
 }

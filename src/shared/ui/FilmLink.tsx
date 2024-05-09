@@ -1,20 +1,10 @@
 import { Flex, Image, Link } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
 import { LikeFilm } from '@app/features';
+import PropTypes from 'prop-types';
 
-type FilmLinkProps = {
-  path: string;
-  name: string;
-  imagePath: string;
-  imageAlt?: string;
-};
-
-export const FilmLink = ({
-  imagePath,
-  path,
-  name,
-  imageAlt,
-}: FilmLinkProps) => {
+// @ts-expect-error Prop types cover these props
+export const FilmLink = ({ imagePath, path, name, imageAlt }) => {
   return (
     <>
       <Link as={RouterLink} to={path}>
@@ -36,4 +26,10 @@ export const FilmLink = ({
       </Flex>
     </>
   );
+};
+FilmLink.propTypes = {
+  path: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  imagePath: PropTypes.string.isRequired,
+  imageAlt: PropTypes.string,
 };

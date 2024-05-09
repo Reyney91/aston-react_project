@@ -19,4 +19,5 @@ const FilmsPage = () => {
     </Box>
   );
 };
+
 export { FilmsPage as default };

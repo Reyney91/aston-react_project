@@ -1,5 +1,8 @@
-interface Genres {
+interface Genre {
   genre: string;
+}
+interface Country {
+  country: string;
 }
 
 export interface Film {
@@ -8,18 +11,15 @@ export interface Film {
   nameRu: string | null;
   nameEn: string | null;
   nameOriginal: string | null;
-  countries: [
-    {
-      country: string;
-    },
-  ];
-  genres: Genres[];
+  countries: Country[];
+  genres: Genre[];
   ratingKinopoisk: number;
   ratingImdb: number | null;
   year: number;
   type: string;
   posterUrl: string;
   posterUrlPreview: string;
+  webUrl?: string;
 }
 
 export interface TransformedFilm {
@@ -30,6 +30,9 @@ export interface TransformedFilm {
   rating: number;
   previewPoster: string;
   poster: string;
+  year: number;
+  type: string;
+  webUrl?: string;
 }
 
 export interface Pagination {
@@ -45,8 +48,4 @@ export interface ApiResponse {
 export interface TransformedApiResponse {
   pagination: Pagination;
   items: TransformedFilm[];
-}
-
-export interface SingleApiResponse {
-  data: Film;
 }

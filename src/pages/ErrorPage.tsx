@@ -12,4 +12,5 @@ const ErrorPage = ({ resetErrorBoundary }: FallbackProps) => {
     </VStack>
   );
 };
+
 export { ErrorPage as default };

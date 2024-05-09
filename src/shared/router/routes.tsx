@@ -6,9 +6,11 @@ const FilmsPage = lazy(() => import('@app/pages/FilmsPage'));
 const ProfilePage = lazy(() => import('@app/pages/ProfilePage'));
 const SignInPage = lazy(() => import('@app/pages/SignInPage'));
 const SignUpPage = lazy(() => import('@app/pages/SignUpPage'));
+const FilmDetailPage = lazy(() => import('@app/pages/FilmDetailPage'));
 
 export const publicRoutes: RouteObject[] = [
   { path: '/films', element: <FilmsPage /> },
+  { path: '/film/:id', element: <FilmDetailPage /> },
 ];
 
 export const userRoutes: RouteObject[] = [

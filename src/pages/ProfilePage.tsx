@@ -55,4 +55,5 @@ const ProfilePage = () => {
     </Box>
   );
 };
+
 export { ProfilePage as default };

@@ -1,7 +1,7 @@
 import { FilmLink } from '@app/shared/ui';
 import { Grid, List, ListItem } from '@chakra-ui/react';
-import type { TransformedFilm } from '@app/shared/types';
 
+import type { TransformedFilm } from '@app/shared/types';
 interface FilmListProps {
   films: TransformedFilm[];
 }
@@ -20,7 +20,7 @@ export const FilmsList = ({ films }: FilmListProps) => {
             imagePath={film.previewPoster}
             imageAlt={film.name}
             name={film.name}
-            path=""
+            path={`/film/${film.id}`}
           />
         </ListItem>
       ))}
