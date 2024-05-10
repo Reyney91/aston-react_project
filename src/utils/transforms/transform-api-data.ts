@@ -23,9 +23,9 @@ export function transformFilmData(film: Film): TransformedFilm {
     rating: ratingImdb || ratingKinopoisk,
     previewPoster: posterUrlPreview,
     poster: posterUrl,
+    webUrl: webUrl || '',
     year,
     type,
-    webUrl,
   };
 }
 

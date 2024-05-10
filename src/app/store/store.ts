@@ -1,9 +1,12 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { apiSlice } from '../api/apiSlice';
+
 import { authReducer } from './authSlice';
+import { favoriteReducer } from './favoritesSlice';
 
 const reducers = combineReducers({
   auth: authReducer,
+  favorites: favoriteReducer,
   [apiSlice.reducerPath]: apiSlice.reducer,
 });
 

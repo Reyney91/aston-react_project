@@ -5,6 +5,7 @@ interface User {
   displayName: string;
   photoURL: string;
   email: string;
+  uid: number;
 }
 
 export interface AuthState {

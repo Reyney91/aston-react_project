@@ -6,7 +6,7 @@ import { useSearchParams } from 'react-router-dom';
 
 const SearchPage = () => {
   const [searchParams] = useSearchParams();
-  const { data, isFetching, isSuccess } = useGetFilmByKeywordQuery(
+  const { data, isFetching } = useGetFilmByKeywordQuery(
     searchParams.get('q') || '',
   );
 
@@ -17,8 +17,7 @@ const SearchPage = () => {
         <Heading color="main.green" mt="2rem" pl="1rem">
           Результаты поиска
         </Heading>
-        {isFetching && <LoadingLayout />}
-        {isSuccess && <FilmsList films={data.films} />}
+        {isFetching ? <LoadingLayout /> : <FilmsList films={data?.films} />}
       </Container>
     </Box>
   );

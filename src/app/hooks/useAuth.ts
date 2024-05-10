@@ -5,7 +5,7 @@ import {
   signOut,
   updateProfile,
 } from 'firebase/auth';
-import { useAppDispatch, useAppSelector } from '@app/app/hooks/hooks';
+import { useAppDispatch, useAppSelector } from '@app/app/hooks/reduxHooks';
 import { login, logout, update } from '@app/app/store/authSlice';
 import type { UserAuth } from '@app/shared/types';
 
@@ -29,6 +29,7 @@ export function useAuth() {
         displayName: user.displayName,
         email: user.email,
         photoUrl: user.photoURL,
+        uid: user.uid,
       }),
     );
   };
@@ -46,6 +47,7 @@ export function useAuth() {
         displayName: user.displayName,
         email: user.email,
         photoUrl: user.photoURL,
+        uid: user.uid,
       }),
     );
   };

@@ -11,8 +11,9 @@ const FilmsDetailPage = () => {
   return (
     <Box as={ScaleFade} py="2rem" mx="3rem" in>
       <Container zIndex={0} variant="surface" p="2rem 2rem">
-        {isFetching && <LoadingLayout />}
-        {isSuccess ? (
+        {isFetching ? (
+          <LoadingLayout />
+        ) : isSuccess ? (
           <FilmInfo film={data} />
         ) : (
           <Center color="main.green" fontSize="3rem">

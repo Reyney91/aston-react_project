@@ -27,7 +27,7 @@ export const FilmSearch = ({ searchQuery = '', ...props }: FilmSearchProps) => {
   });
   const onSubmit = async (data: { search: string }) => {
     const encodeSearchQuery = encodeURIComponent(data.search);
-    navigate(`/search?q=${encodeSearchQuery}`);
+    navigate(encodeSearchQuery ? `/search?q=${encodeSearchQuery}` : '/films');
   };
 
   return (

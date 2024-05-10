@@ -78,3 +78,7 @@ export interface TransformedSearchApiResponse {
   keyword: string;
   films: TransformedFilm[];
 }
+
+export interface FilmsProps {
+  films?: TransformedFilm[];
+}

@@ -4,7 +4,7 @@ import { FilmsList, LoadingLayout } from '@app/widgets';
 import { Box, Container, Heading, ScaleFade } from '@chakra-ui/react';
 
 const FilmsPage = () => {
-  const { data, isFetching, isSuccess } = useGetAllFilmsQuery();
+  const { data, isFetching } = useGetAllFilmsQuery();
 
   return (
     <Box as={ScaleFade} py="2rem" mx="3rem" in>
@@ -13,8 +13,7 @@ const FilmsPage = () => {
         <Heading color="main.green" mt="2rem" pl="1rem">
           Каталог фильмов
         </Heading>
-        {isFetching && <LoadingLayout />}
-        {isSuccess && <FilmsList films={data.items} />}
+        {isFetching ? <LoadingLayout /> : <FilmsList films={data?.items} />}
       </Container>
     </Box>
   );
