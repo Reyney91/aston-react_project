@@ -1,4 +1,4 @@
-import { LoadingIcon, SearchIcon } from '@app/shared/icons';
+import { SearchIcon } from '@app/shared/icons';
 import {
   Box,
   IconButton,
@@ -16,11 +16,7 @@ interface FilmSearchProps extends BoxProps {
 
 export const FilmSearch = ({ searchQuery = '', ...props }: FilmSearchProps) => {
   const navigate = useNavigate();
-  const {
-    handleSubmit,
-    control,
-    formState: { isSubmitting },
-  } = useForm({
+  const { handleSubmit, control } = useForm({
     defaultValues: {
       search: searchQuery || '',
     },
@@ -38,14 +34,18 @@ export const FilmSearch = ({ searchQuery = '', ...props }: FilmSearchProps) => {
         render={({ field }) => (
           <InputGroup mt="0.5rem">
             <Input variant="solid" placeholder="Поиск фильмов" {...field} />
-            <InputRightElement h="100%">
+            <InputRightElement
+              h="100%"
+              bgColor="secondary.gray"
+              borderRightRadius="0.625rem"
+            >
               <IconButton
                 type="submit"
-                mr="1rem"
+                mx="1rem"
                 h="100%"
                 variant="unstyled"
                 aria-label="Search film"
-                icon={isSubmitting ? <LoadingIcon /> : <SearchIcon />}
+                icon={<SearchIcon />}
               />
             </InputRightElement>
           </InputGroup>

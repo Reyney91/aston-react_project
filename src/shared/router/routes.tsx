@@ -1,4 +1,3 @@
-import SearchPage from '@app/pages/SearchPage';
 import { lazy } from 'react';
 import type { RouteObject } from 'react-router-dom';
 
@@ -9,6 +8,7 @@ const SignInPage = lazy(() => import('@app/pages/SignInPage'));
 const SignUpPage = lazy(() => import('@app/pages/SignUpPage'));
 const FilmDetailPage = lazy(() => import('@app/pages/FilmDetailPage'));
 const FavoritePage = lazy(() => import('@app/pages/FavoritePage'));
+const SearchPage = lazy(() => import('@app/pages/SearchPage'));
 
 export const publicRoutes: RouteObject[] = [
   { path: '/films', element: <FilmsPage /> },
