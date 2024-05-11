@@ -1,6 +1,5 @@
 export * from './ClosedEyeIcon';
 export * from './EyeIcon';
-export * from './LoadingIcon';
 export * from './ExitIcon';
 export * from './EnterIcon';
 export * from './FilmsIcon';
@@ -9,3 +8,4 @@ export * from './EditIcon';
 export * from './CloseIcon';
 export * from './SearchIcon';
 export * from './LikeIcon';
+export * from './HistoryIcon';

@@ -1,10 +1,10 @@
-import { useGetFilmsQuery } from '@app/app/api/apiSlice';
+import { useGetAllFilmsQuery } from '@app/app/api/apiSlice';
 import { FilmSearch } from '@app/features';
 import { FilmsList, LoadingLayout } from '@app/widgets';
 import { Box, Container, Heading, ScaleFade } from '@chakra-ui/react';
 
 const FilmsPage = () => {
-  const { data, isFetching, isSuccess } = useGetFilmsQuery();
+  const { data, isFetching } = useGetAllFilmsQuery();
 
   return (
     <Box as={ScaleFade} py="2rem" mx="3rem" in>
@@ -13,10 +13,10 @@ const FilmsPage = () => {
         <Heading color="main.green" mt="2rem" pl="1rem">
           Каталог фильмов
         </Heading>
-        {isFetching && <LoadingLayout />}
-        {isSuccess && <FilmsList films={data.items} />}
+        {isFetching ? <LoadingLayout /> : <FilmsList films={data?.items} />}
       </Container>
     </Box>
   );
 };
+
 export { FilmsPage as default };

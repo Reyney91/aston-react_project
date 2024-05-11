@@ -5,6 +5,7 @@ interface User {
   displayName: string;
   photoURL: string;
   email: string;
+  uid: number;
 }
 
 export interface AuthState {
@@ -35,8 +36,7 @@ export const authSlice = createSlice({
     },
   },
 });
-export const { login, logout, update } = authSlice.actions;
 
-// Other code such as selectors can use the imported `RootState` type
+export const { login, logout, update } = authSlice.actions;
 export const isAuth = (state: RootState) => state.auth;
 export const authReducer = authSlice.reducer;

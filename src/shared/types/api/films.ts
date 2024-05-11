@@ -1,5 +1,8 @@
-interface Genres {
+interface Genre {
   genre: string;
+}
+interface Country {
+  country: string;
 }
 
 export interface Film {
@@ -8,28 +11,27 @@ export interface Film {
   nameRu: string | null;
   nameEn: string | null;
   nameOriginal: string | null;
-  countries: [
-    {
-      country: string;
-    },
-  ];
-  genres: Genres[];
-  ratingKinopoisk: number;
-  ratingImdb: number | null;
-  year: number;
+  countries: Country[];
+  genres: Genre[];
+  ratingKinopoisk: string;
+  ratingImdb: string | null;
+  year: string;
   type: string;
   posterUrl: string;
   posterUrlPreview: string;
+  webUrl?: string;
 }
 
 export interface TransformedFilm {
   id: number;
   name: string;
   country: string;
-  genre: string;
-  rating: number;
+  rating: string;
   previewPoster: string;
   poster: string;
+  year: string;
+  type: string;
+  webUrl?: string;
 }
 
 export interface Pagination {
@@ -47,6 +49,36 @@ export interface TransformedApiResponse {
   items: TransformedFilm[];
 }
 
-export interface SingleApiResponse {
-  data: Film;
+export interface SearchQuery {
+  search?: string;
+}
+
+export interface SearchApiResponse {
+  keyword: string;
+  films: SearchedFilm[];
+}
+
+export interface SearchedFilm {
+  filmId: number;
+  nameRu: string;
+  nameEn: string;
+  type: string;
+  year: string;
+  description: string;
+  filmLength: string;
+  countries: Country[];
+  genres: Genre[];
+  rating: string;
+  ratingVoteCount: number;
+  posterUrl: string;
+  posterUrlPreview: string;
+}
+
+export interface TransformedSearchApiResponse {
+  keyword: string;
+  films: TransformedFilm[];
+}
+
+export interface FilmsProps {
+  films?: TransformedFilm[];
 }

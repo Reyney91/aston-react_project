@@ -1,29 +1,24 @@
 import { FilmLink } from '@app/shared/ui';
-import { Grid, List, ListItem } from '@chakra-ui/react';
-import type { TransformedFilm } from '@app/shared/types';
+import { Center, Grid, List, ListItem } from '@chakra-ui/react';
+import type { FilmsProps } from '@app/shared/types';
 
-interface FilmListProps {
-  films: TransformedFilm[];
-}
-
-export const FilmsList = ({ films }: FilmListProps) => {
-  return (
+export const FilmsList = ({ films }: FilmsProps) => {
+  return films?.length ? (
     <List
       as={Grid}
-      gridTemplateColumns="repeat(auto-fit, minmax(15rem, 1fr))"
-      gap="4rem"
+      gridTemplateColumns="repeat(auto-fill, minmax(15rem,1fr))"
+      gap="2rem"
       my="2rem"
     >
       {films.map(film => (
         <ListItem key={film.id}>
-          <FilmLink
-            imagePath={film.previewPoster}
-            imageAlt={film.name}
-            name={film.name}
-            path=""
-          />
+          <FilmLink film={film} />
         </ListItem>
       ))}
     </List>
+  ) : (
+    <Center color="secondary.gray" mt="2rem" fontSize="3rem">
+      Ничего не найдено
+    </Center>
   );
 };

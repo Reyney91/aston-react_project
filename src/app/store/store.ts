@@ -1,9 +1,12 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { apiSlice } from '../api/apiSlice';
+
 import { authReducer } from './authSlice';
+import { favoriteReducer } from './favoritesSlice';
 
 const reducers = combineReducers({
   auth: authReducer,
+  favorites: favoriteReducer,
   [apiSlice.reducerPath]: apiSlice.reducer,
 });
 
@@ -13,7 +16,5 @@ export const store = configureStore({
     getDefaultMiddleware().concat(apiSlice.middleware),
 });
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = typeof store.dispatch;

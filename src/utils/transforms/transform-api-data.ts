@@ -1,4 +1,4 @@
-import type { Film, TransformedFilm } from '@app/shared/types';
+import type { Film, SearchedFilm, TransformedFilm } from '@app/shared/types';
 
 export function transformFilmData(film: Film): TransformedFilm {
   const {
@@ -8,18 +8,48 @@ export function transformFilmData(film: Film): TransformedFilm {
     nameEn,
     nameOriginal,
     ratingKinopoisk,
-    genres,
+    ratingImdb,
     posterUrlPreview,
     posterUrl,
+    year,
+    type,
+    webUrl,
   } = film;
 
   return {
     id: kinopoiskId,
     name: nameRu || nameEn || nameOriginal || '',
     country: countries[0].country,
-    genre: genres[0].genre,
-    rating: ratingKinopoisk,
+    rating: ratingImdb || ratingKinopoisk,
     previewPoster: posterUrlPreview,
     poster: posterUrl,
+    webUrl: webUrl || '',
+    year,
+    type,
+  };
+}
+
+export function transformSearchedFilmData(film: SearchedFilm): TransformedFilm {
+  const {
+    filmId,
+    nameEn,
+    nameRu,
+    posterUrl,
+    posterUrlPreview,
+    rating,
+    countries,
+    year,
+    type,
+  } = film;
+
+  return {
+    id: filmId,
+    name: nameRu || nameEn || '',
+    country: countries[0]?.country,
+    previewPoster: posterUrlPreview,
+    poster: posterUrl,
+    rating,
+    year,
+    type,
   };
 }

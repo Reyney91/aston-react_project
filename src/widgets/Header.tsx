@@ -1,6 +1,20 @@
-import { Avatar, Box, Flex, List, ListItem, Text } from '@chakra-ui/react';
+import {
+  Avatar,
+  Box,
+  Flex,
+  Hide,
+  List,
+  ListItem,
+  Text,
+} from '@chakra-ui/react';
 import { useAuth } from '@app/app/hooks';
-import { EnterIcon, ExitIcon, FilmsIcon, StarIcon } from '../shared/icons';
+import {
+  EnterIcon,
+  ExitIcon,
+  FilmsIcon,
+  HistoryIcon,
+  StarIcon,
+} from '../shared/icons';
 import { HeaderLink } from '../shared/ui';
 
 export const Header = () => {
@@ -44,7 +58,17 @@ export const Header = () => {
           <ListItem ml="1rem">
             <HeaderLink path="/favorites">
               <StarIcon />
-              <Text pl="1rem">Избранное</Text>
+              <Hide below="md">
+                <Text pl="1rem">Избранное</Text>
+              </Hide>
+            </HeaderLink>
+          </ListItem>
+          <ListItem ml="1rem">
+            <HeaderLink path="/history">
+              <HistoryIcon />
+              <Hide below="md">
+                <Text pl="1rem">История поиска</Text>
+              </Hide>
             </HeaderLink>
           </ListItem>
           <HeaderLink
@@ -54,7 +78,9 @@ export const Header = () => {
             ml="2rem"
           >
             <ExitIcon />
-            <Text pl="1rem">Выйти из аккаунта</Text>
+            <Hide below="md">
+              <Text pl="1rem">Выйти из аккаунта</Text>
+            </Hide>
           </HeaderLink>
         </List>
       ) : (

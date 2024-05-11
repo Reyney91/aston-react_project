@@ -1,7 +1,7 @@
 import { Icon, type IconProps } from '@chakra-ui/react';
 
 export const FilmsIcon = (props: IconProps) => (
-  <Icon w="2.5rem" h="2.5rem" viewBox="0 0 14 14" {...props}>
+  <Icon w="2rem" h="2rem" viewBox="0 0 14 14" {...props}>
     <path
       d="M1.36505 6.12683H12.8125V12.3594C12.8125 12.9116 12.3648 13.3594 11.8125 13.3594H2.36505C1.81277 13.3594 1.36505 12.9117 1.36505 12.3594V6.12683Z"
       stroke="currentColor"
