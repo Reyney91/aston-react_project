@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 
 const FilmsDetailPage = () => {
   const { id } = useParams();
-  const { data, isFetching, isSuccess } = useGetFilmByIdQuery(id);
+  const { data, isFetching, isSuccess } = useGetFilmByIdQuery(id || '');
 
   return (
     <Box as={ScaleFade} py="2rem" mx="3rem" in>
