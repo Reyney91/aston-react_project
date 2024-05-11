@@ -1,5 +1,6 @@
 import { useAppDispatch, useAppSelector } from '@app/app/hooks/reduxHooks';
 import { child, get, ref, set } from 'firebase/database';
+import { useCallback } from 'react';
 import {
   addFavorite,
   removeFavorite,
@@ -14,33 +15,35 @@ export function useFavorites() {
   const isLoading = useAppSelector(state => state.favorites.isLoading);
   const userId = useAppSelector(state => state.auth.user?.uid);
 
-  const setAllFavorites = async () => {
-    const dbRef = ref(database);
-    const films = await get(child(dbRef, `users/${userId}/favorites`));
-    dispatch(setUserFavorites(films.val() ?? []));
-  };
+  return useCallback(() => {
+    const setAllFavorites = async () => {
+      const dbRef = ref(database);
+      const films = await get(child(dbRef, `users/${userId}/favorites`));
+      dispatch(setUserFavorites(films.val() ?? []));
+    };
 
-  const addToFavorites = async (film: TransformedFilm) => {
-    dispatch(addFavorite(film));
-    await set(ref(database, `users/${userId}/favorites`), [
-      ...favoriteFilms,
-      film,
-    ]);
-  };
+    const addToFavorites = async (film: TransformedFilm) => {
+      dispatch(addFavorite(film));
+      await set(ref(database, `users/${userId}/favorites`), [
+        ...favoriteFilms,
+        film,
+      ]);
+    };
 
-  const removeFromFavorites = async (film: TransformedFilm) => {
-    dispatch(removeFavorite(film));
-    await set(
-      ref(database, `users/${userId}/favorites`),
-      favoriteFilms.filter(f => f.id !== film.id),
-    );
-  };
+    const removeFromFavorites = async (film: TransformedFilm) => {
+      dispatch(removeFavorite(film));
+      await set(
+        ref(database, `users/${userId}/favorites`),
+        favoriteFilms.filter(f => f.id !== film.id),
+      );
+    };
 
-  return {
-    addToFavorites,
-    removeFromFavorites,
-    setAllFavorites,
-    favoriteFilms,
-    isLoading,
-  };
+    return {
+      addToFavorites,
+      removeFromFavorites,
+      setAllFavorites,
+      favoriteFilms,
+      isLoading,
+    };
+  }, [dispatch, favoriteFilms, isLoading, userId])();
 }

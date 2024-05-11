@@ -32,7 +32,7 @@ export const apiSlice = createApi({
         items: response.items.map(transformFilmData),
       }),
     }),
-    getFilmById: builder.query<TransformedFilm, string | undefined>({
+    getFilmById: builder.query<TransformedFilm, string>({
       query: id => ({
         url: `/api/v2.2/films/${id}`,
       }),
