@@ -5,14 +5,18 @@ import { useEffect } from 'react';
 import { theme } from './chakraTheme';
 import { Router } from './shared/router';
 import ErrorPage from './pages/ErrorPage';
-import { useFavorites, useAuth } from './app/hooks';
+import { useFavorites, useAuth, useHistory } from './app/hooks';
 
 export const App = () => {
   const { setAllFavorites } = useFavorites();
+  const { setAllHistory } = useHistory();
 
   const { isAuth } = useAuth();
   useEffect(() => {
-    isAuth && setAllFavorites();
+    if (isAuth) {
+      setAllFavorites();
+      setAllHistory();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuth]);
 

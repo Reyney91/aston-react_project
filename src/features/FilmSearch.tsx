@@ -8,6 +8,7 @@ import {
 } from '@chakra-ui/react';
 import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { useAuth, useHistory } from '@app/app/hooks';
 import type { BoxProps } from '@chakra-ui/react';
 
 interface FilmSearchProps extends BoxProps {
@@ -16,14 +17,22 @@ interface FilmSearchProps extends BoxProps {
 
 export const FilmSearch = ({ searchQuery = '', ...props }: FilmSearchProps) => {
   const navigate = useNavigate();
+  const { addToHistory } = useHistory();
+  const { isAuth } = useAuth();
   const { handleSubmit, control } = useForm({
     defaultValues: {
       search: searchQuery || '',
     },
   });
   const onSubmit = async (data: { search: string }) => {
+    if (!data.search.trim()) {
+      return navigate('/films');
+    }
+    if (isAuth) {
+      addToHistory(data.search);
+    }
     const encodeSearchQuery = encodeURIComponent(data.search);
-    navigate(encodeSearchQuery ? `/search?q=${encodeSearchQuery}` : '/films');
+    navigate(`/search?q=${encodeSearchQuery}`);
   };
 
   return (

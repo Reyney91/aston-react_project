@@ -22,13 +22,15 @@ export function useAuth() {
       data.password,
     );
     const user = userCredential.user;
+    console.log(user);
+
     data.name && (await updateProfile(user, { displayName: data.name }));
     localStorage.setItem('user', JSON.stringify(user));
     dispatch(
       login({
         displayName: user.displayName,
         email: user.email,
-        photoUrl: user.photoURL,
+        photoURL: user.photoURL,
         uid: user.uid,
       }),
     );
@@ -40,13 +42,15 @@ export function useAuth() {
       data.email,
       data.password,
     );
+
     const user = userCredential.user;
+    console.log(user);
     localStorage.setItem('user', JSON.stringify(user));
     dispatch(
       login({
         displayName: user.displayName,
         email: user.email,
-        photoUrl: user.photoURL,
+        photoURL: user.photoURL,
         uid: user.uid,
       }),
     );

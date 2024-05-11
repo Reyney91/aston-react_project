@@ -11,7 +11,7 @@ export function Router() {
   return (
     <Suspense fallback={<LoadingLayout />}>
       <Routes>
-        <Route path="/" element={<HeaderLayout />}>
+        <Route element={<HeaderLayout />}>
           {publicRoutes.map(route => (
             <Route key={route.path} path={route.path} element={route.element} />
           ))}
@@ -24,7 +24,7 @@ export function Router() {
               />
             ))}
         </Route>
-        <Route path="*" element={<Navigate to="/" />} />
+        <Route path="*" element={<Navigate to="/films" />} />
         {!isAuth &&
           guestRoutes.map(route => (
             <Route key={route.path} path={route.path} element={route.element} />

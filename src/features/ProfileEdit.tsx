@@ -88,6 +88,7 @@ export const ProfileEdit = ({ disclosure }: EditProfileProps) => {
                 control={control}
                 rules={{
                   required: true,
+                  maxLength: 25,
                 }}
                 render={({ field }) => (
                   <FormControl isInvalid={!!errors.name} pos="relative">
@@ -100,7 +101,7 @@ export const ProfileEdit = ({ disclosure }: EditProfileProps) => {
                         mt="-1rem"
                         right={0}
                       >
-                        Имя не может быть пустым
+                        Имя не может быть пустым или больше 25 символов
                       </FormErrorMessage>
                     )}
                     <Input
