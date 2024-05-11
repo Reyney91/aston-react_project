@@ -11,7 +11,7 @@ const SearchPage = lazy(() => import('@app/pages/SearchPage'));
 const HistoryPage = lazy(() => import('@app/pages/HistoryPage'));
 
 export const publicRoutes: RouteObject[] = [
-  { path: '/films', element: <FilmsPage /> },
+  { path: '/', element: <FilmsPage /> },
   { path: '/film/:id', element: <FilmDetailPage /> },
   { path: '/search', element: <SearchPage /> },
 ];

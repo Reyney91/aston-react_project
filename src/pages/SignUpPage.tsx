@@ -45,7 +45,7 @@ const SignUpPage = () => {
   const onSubmit = async (data: UserAuth) => {
     try {
       await signUp(data);
-      navigate('/films');
+      navigate('/');
     } catch {
       setError('root', { message: 'Почта уже используется' });
       setTimeout(

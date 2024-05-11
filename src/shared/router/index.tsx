@@ -24,7 +24,7 @@ export function Router() {
               />
             ))}
         </Route>
-        <Route path="*" element={<Navigate to="/films" />} />
+        <Route path="*" element={<Navigate to="/" />} />
         {!isAuth &&
           guestRoutes.map(route => (
             <Route key={route.path} path={route.path} element={route.element} />

@@ -26,7 +26,7 @@ export const FilmSearch = ({ searchQuery = '', ...props }: FilmSearchProps) => {
   });
   const onSubmit = async (data: { search: string }) => {
     if (!data.search.trim()) {
-      return navigate('/films');
+      return navigate('/');
     }
     if (isAuth) {
       addToHistory(data.search);

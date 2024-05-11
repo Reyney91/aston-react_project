@@ -32,7 +32,7 @@ export const Header = () => {
       h="5.5rem"
     >
       <Box height="100%">
-        <HeaderLink path="/films">
+        <HeaderLink path="/">
           <FilmsIcon />
           <Text pl="1rem">Фильмы</Text>
         </HeaderLink>
