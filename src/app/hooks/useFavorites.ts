@@ -15,35 +15,39 @@ export function useFavorites() {
   const isLoading = useAppSelector(state => state.favorites.isLoading);
   const userId = useAppSelector(state => state.auth.user?.uid);
 
-  return useCallback(() => {
-    const setAllFavorites = async () => {
-      const dbRef = ref(database);
-      const films = await get(child(dbRef, `users/${userId}/favorites`));
-      dispatch(setUserFavorites(films.val() ?? []));
-    };
+  const setAllFavorites = useCallback(async () => {
+    const dbRef = ref(database);
+    const films = await get(child(dbRef, `users/${userId}/favorites`));
+    dispatch(setUserFavorites(films.val() ?? []));
+  }, [dispatch, userId]);
 
-    const addToFavorites = async (film: TransformedFilm) => {
+  const addToFavorites = useCallback(
+    async (film: TransformedFilm) => {
       dispatch(addFavorite(film));
       await set(ref(database, `users/${userId}/favorites`), [
         ...favoriteFilms,
         film,
       ]);
-    };
+    },
+    [dispatch, favoriteFilms, userId],
+  );
 
-    const removeFromFavorites = async (film: TransformedFilm) => {
+  const removeFromFavorites = useCallback(
+    async (film: TransformedFilm) => {
       dispatch(removeFavorite(film));
       await set(
         ref(database, `users/${userId}/favorites`),
         favoriteFilms.filter(f => f.id !== film.id),
       );
-    };
+    },
+    [dispatch, favoriteFilms, userId],
+  );
 
-    return {
-      addToFavorites,
-      removeFromFavorites,
-      setAllFavorites,
-      favoriteFilms,
-      isLoading,
-    };
-  }, [dispatch, favoriteFilms, isLoading, userId])();
+  return {
+    addToFavorites,
+    removeFromFavorites,
+    setAllFavorites,
+    favoriteFilms,
+    isLoading,
+  };
 }
