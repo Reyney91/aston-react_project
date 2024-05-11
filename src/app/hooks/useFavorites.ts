@@ -14,12 +14,12 @@ export function useFavorites() {
   const favoriteFilms = useAppSelector(state => state.favorites.films);
   const isLoading = useAppSelector(state => state.favorites.isLoading);
   const userId = useAppSelector(state => state.auth.user?.uid);
+  const dbRef = ref(database);
 
   const setAllFavorites = useCallback(async () => {
-    const dbRef = ref(database);
     const films = await get(child(dbRef, `users/${userId}/favorites`));
     dispatch(setUserFavorites(films.val() ?? []));
-  }, [dispatch, userId]);
+  }, [dbRef, dispatch, userId]);
 
   const addToFavorites = useCallback(
     async (film: TransformedFilm) => {
@@ -28,8 +28,10 @@ export function useFavorites() {
         ...favoriteFilms,
         film,
       ]);
+      const films = await get(child(dbRef, `users/${userId}/favorites`));
+      dispatch(setUserFavorites(films.val() ?? []));
     },
-    [dispatch, favoriteFilms, userId],
+    [dbRef, dispatch, favoriteFilms, userId],
   );
 
   const removeFromFavorites = useCallback(
@@ -39,8 +41,10 @@ export function useFavorites() {
         ref(database, `users/${userId}/favorites`),
         favoriteFilms.filter(f => f.id !== film.id),
       );
+      const films = await get(child(dbRef, `users/${userId}/favorites`));
+      dispatch(setUserFavorites(films.val() ?? []));
     },
-    [dispatch, favoriteFilms, userId],
+    [dbRef, dispatch, favoriteFilms, userId],
   );
 
   return {
