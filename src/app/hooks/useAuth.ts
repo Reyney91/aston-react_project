@@ -22,8 +22,6 @@ export function useAuth() {
       data.password,
     );
     const user = userCredential.user;
-    console.log(user);
-
     data.name && (await updateProfile(user, { displayName: data.name }));
     localStorage.setItem('user', JSON.stringify(user));
     dispatch(
@@ -42,9 +40,7 @@ export function useAuth() {
       data.email,
       data.password,
     );
-
     const user = userCredential.user;
-    console.log(user);
     localStorage.setItem('user', JSON.stringify(user));
     dispatch(
       login({
