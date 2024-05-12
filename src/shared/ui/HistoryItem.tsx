@@ -14,11 +14,15 @@ export const HistoryItem = ({ search, id }) => {
       justify="space-between"
       align="center"
       p="1rem 2rem"
-      color="white"
       bg="secondary.darkGray"
       rounded="md"
     >
-      <Link as={RouterLink} to={`/search?q=${encodeItemQuery}`}>
+      <Link
+        as={RouterLink}
+        to={`/search?q=${encodeItemQuery}`}
+        color="white"
+        fontSize={24}
+      >
         {search}
       </Link>
 

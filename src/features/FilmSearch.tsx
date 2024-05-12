@@ -8,7 +8,9 @@ import {
 } from '@chakra-ui/react';
 import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { useAuth, useHistory } from '@app/app/hooks';
+import { useAuth, useHistory, useDebounce } from '@app/app/hooks';
+import { SearchSuggestions } from '@app/shared/ui';
+import { useState } from 'react';
 import type { BoxProps } from '@chakra-ui/react';
 
 interface FilmSearchProps extends BoxProps {
@@ -16,14 +18,26 @@ interface FilmSearchProps extends BoxProps {
 }
 
 export const FilmSearch = ({ searchQuery = '', ...props }: FilmSearchProps) => {
-  const navigate = useNavigate();
-  const { addToHistory } = useHistory();
-  const { isAuth } = useAuth();
-  const { handleSubmit, control } = useForm({
+  const { handleSubmit, control, watch } = useForm({
     defaultValues: {
       search: searchQuery || '',
     },
   });
+
+  const navigate = useNavigate();
+  const { addToHistory } = useHistory();
+  const { isAuth } = useAuth();
+  const searchValue = watch('search');
+  const debouncedValue = useDebounce(searchValue);
+  const [isSuggestionsOpen, setIsSuggestionsOpen] = useState(true);
+
+  const onBlur = () => {
+    setIsSuggestionsOpen(false);
+  };
+  const onFocus = () => {
+    setIsSuggestionsOpen(true);
+  };
+
   const onSubmit = async (data: { search: string }) => {
     if (!data.search.trim()) {
       return navigate('/');
@@ -36,13 +50,24 @@ export const FilmSearch = ({ searchQuery = '', ...props }: FilmSearchProps) => {
   };
 
   return (
-    <Box as="form" onSubmit={handleSubmit(onSubmit)} {...props}>
+    <Box
+      as="form"
+      onSubmit={handleSubmit(onSubmit)}
+      position="relative"
+      {...props}
+    >
       <Controller
         name="search"
         control={control}
         render={({ field }) => (
           <InputGroup mt="0.5rem">
-            <Input variant="solid" placeholder="Поиск фильмов" {...field} />
+            <Input
+              variant="solid"
+              placeholder="Поиск фильмов"
+              onFocus={onFocus}
+              {...field}
+              onBlur={onBlur}
+            />
             <InputRightElement
               h="100%"
               bgColor="secondary.gray"
@@ -60,6 +85,12 @@ export const FilmSearch = ({ searchQuery = '', ...props }: FilmSearchProps) => {
           </InputGroup>
         )}
       />
+      {debouncedValue.trim() && (
+        <SearchSuggestions
+          debouncedValue={debouncedValue}
+          isSuggestionsOpen={isSuggestionsOpen}
+        />
+      )}
     </Box>
   );
 };

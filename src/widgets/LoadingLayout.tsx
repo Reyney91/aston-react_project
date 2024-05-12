@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 export const LoadingLayout = ({ size = 'xl' }) => {
   return (
-    <VStack mt={20}>
+    <VStack my={20}>
       <Spinner size={size} />
     </VStack>
   );
