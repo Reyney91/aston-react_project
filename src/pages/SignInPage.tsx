@@ -43,7 +43,7 @@ const SignInPage = () => {
   const onSubmit = async (data: UserAuth) => {
     try {
       await signIn(data);
-      navigate('/films');
+      navigate('/');
     } catch {
       setError('root', { message: 'Неверный логин или пароль' });
       setTimeout(

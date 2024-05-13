@@ -28,7 +28,7 @@ export function useAuth() {
       login({
         displayName: user.displayName,
         email: user.email,
-        photoUrl: user.photoURL,
+        photoURL: user.photoURL,
         uid: user.uid,
       }),
     );
@@ -46,7 +46,7 @@ export function useAuth() {
       login({
         displayName: user.displayName,
         email: user.email,
-        photoUrl: user.photoURL,
+        photoURL: user.photoURL,
         uid: user.uid,
       }),
     );

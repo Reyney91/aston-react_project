@@ -21,7 +21,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { useAuth } from '@app/app/hooks';
 import type { UserAuth } from '@app/shared/types';
 
-const nameErrorMessage = 'Имя не может быть пустым';
+const nameErrorMessage = 'Имя не может быть пустым или больше 25 символов';
 const emailErrorMessage = 'Неккоректный email';
 const passwordErrorMessage = 'Пароль не может быть пустым';
 
@@ -45,7 +45,7 @@ const SignUpPage = () => {
   const onSubmit = async (data: UserAuth) => {
     try {
       await signUp(data);
-      navigate('/films');
+      navigate('/');
     } catch {
       setError('root', { message: 'Почта уже используется' });
       setTimeout(
@@ -78,6 +78,7 @@ const SignUpPage = () => {
             control={control}
             rules={{
               required: true,
+              maxLength: 25,
             }}
             render={({ field }) => (
               <FormControl mt="1rem" isInvalid={!!errors.name} pos="relative">

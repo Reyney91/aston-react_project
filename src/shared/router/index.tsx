@@ -11,7 +11,7 @@ export function Router() {
   return (
     <Suspense fallback={<LoadingLayout />}>
       <Routes>
-        <Route path="/" element={<HeaderLayout />}>
+        <Route element={<HeaderLayout />}>
           {publicRoutes.map(route => (
             <Route key={route.path} path={route.path} element={route.element} />
           ))}
