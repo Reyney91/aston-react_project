@@ -22,8 +22,10 @@ export function useAuth() {
       data.password,
     );
     const user = userCredential.user;
+
     data.name && (await updateProfile(user, { displayName: data.name }));
     localStorage.setItem('user', JSON.stringify(user));
+
     dispatch(
       login({
         displayName: user.displayName,
@@ -41,7 +43,9 @@ export function useAuth() {
       data.password,
     );
     const user = userCredential.user;
+
     localStorage.setItem('user', JSON.stringify(user));
+
     dispatch(
       login({
         displayName: user.displayName,
@@ -67,7 +71,9 @@ export function useAuth() {
         displayName: data.name,
         photoURL: data.avatarUrl,
       });
+
       localStorage.setItem('user', JSON.stringify(auth.currentUser));
+
       dispatch(
         update({
           displayName: auth.currentUser.displayName,

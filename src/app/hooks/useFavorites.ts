@@ -29,6 +29,7 @@ export function useFavorites() {
         film,
       ]);
       const films = await get(child(dbRef, `users/${userId}/favorites`));
+
       dispatch(setUserFavorites(films.val() ?? []));
     },
     [dbRef, dispatch, favoriteFilms, userId],
@@ -42,6 +43,7 @@ export function useFavorites() {
         favoriteFilms.filter(f => f.id !== film.id),
       );
       const films = await get(child(dbRef, `users/${userId}/favorites`));
+
       dispatch(setUserFavorites(films.val() ?? []));
     },
     [dbRef, dispatch, favoriteFilms, userId],
