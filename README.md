@@ -31,7 +31,7 @@ npm run dev
 - [x] Есть применение [Контекст API](https://github.com/Reyney91/aston-react_project/blob/main/src/App.tsx).
 - [x] Есть применение [предохранителя](https://github.com/Reyney91/aston-react_project/blob/main/src/App.tsx).
 - [x] Есть хотя бы один [кастомный хук](https://github.com/Reyney91/aston-react_project/blob/main/src/app/hooks/useAuth.ts).
-- [x] Хотя бы несколько компонентов используют PropTypes [тут](https://github.com/Reyney91/aston-react_project/blob/main/src/widgets/LoadingLayout.tsx) [тут](https://github.com/Reyney91/aston-react_project/blob/main/src/shared/ui/HistoryItem.tsx) и [тут].
+- [x] Хотя бы несколько компонентов используют PropTypes [тут](https://github.com/Reyney91/aston-react_project/blob/main/src/widgets/LoadingLayout.tsx), [тут](https://github.com/Reyney91/aston-react_project/blob/main/src/shared/ui/HistoryItem.tsx) и [тут](https://github.com/Reyney91/aston-react_project/blob/main/src/widgets/SearchSuggestions.tsx).
 - [x] Поиск не должен триггерить много [запросов к серверу](https://github.com/Reyney91/aston-react_project/blob/main/src/app/hooks/useDebounce.ts).
 - [x] Есть применение [lazy](https://github.com/Reyney91/aston-react_project/blob/main/src/shared/router/routes.tsx) + [Suspense](https://github.com/Reyney91/aston-react_project/blob/main/src/shared/router/router.tsx).
 - [x] Используем [Modern Redux with Redux Toolkit](https://github.com/Reyney91/aston-react_project/blob/main/src/app/store/store.ts).
