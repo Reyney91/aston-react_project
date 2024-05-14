@@ -19,6 +19,7 @@ export const SearchSuggestions = ({ debouncedValue, isSuggestionsOpen }) => {
         position="absolute"
         bgColor="secondary.darkDarkGray"
         borderRadius="0.625rem"
+        zIndex={1}
       >
         {isFetching ? (
           <LoadingLayout />

@@ -13,7 +13,6 @@ export interface AuthState {
   user: User | null;
 }
 
-// Define the initial state using that type
 const initialState: AuthState = {
   isAuth: !!localStorage.getItem('user'),
   user: JSON.parse(localStorage.getItem('user') || 'null'),

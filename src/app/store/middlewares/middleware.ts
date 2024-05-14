@@ -1,20 +1,19 @@
 /* eslint-disable no-console */
 import { createListenerMiddleware } from '@reduxjs/toolkit';
-import { setUserFavorites } from '../favoritesSlice';
-import { setUserHistory } from '../historySlice';
+import { login, logout } from '../authSlice';
 
 export const logUserInfoLoadedMiddleware = createListenerMiddleware();
 
 logUserInfoLoadedMiddleware.startListening({
-  actionCreator: setUserFavorites,
+  actionCreator: login,
   effect: () => {
-    console.log('user favorites uploaded');
+    console.log('user logged in');
   },
 });
 
 logUserInfoLoadedMiddleware.startListening({
-  actionCreator: setUserHistory,
+  actionCreator: logout,
   effect: () => {
-    console.log('user history uploaded');
+    console.log('user logged out');
   },
 });

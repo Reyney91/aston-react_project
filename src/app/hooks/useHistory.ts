@@ -29,6 +29,7 @@ export function useHistory() {
         searchItem,
       ]);
       const dbHistory = await get(child(dbRef, `users/${userId}/history`));
+
       dispatch(setUserHistory(dbHistory.val() ?? []));
     },
 

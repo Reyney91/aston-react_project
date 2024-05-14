@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth, useHistory, useDebounce } from '@app/app/hooks';
 import { SearchSuggestions } from '@app/shared/ui';
 import { useState } from 'react';
+import type { FocusEvent } from 'react';
 import type { BoxProps } from '@chakra-ui/react';
 
 interface FilmSearchProps extends BoxProps {
@@ -29,16 +30,20 @@ export const FilmSearch = ({ searchQuery = '', ...props }: FilmSearchProps) => {
   const { isAuth } = useAuth();
   const searchValue = watch('search');
   const debouncedValue = useDebounce(searchValue);
-  const [isSuggestionsOpen, setIsSuggestionsOpen] = useState(true);
+  const [isSuggestionsOpen, setIsSuggestionsOpen] = useState(false);
 
-  const onBlur = () => {
-    setIsSuggestionsOpen(false);
-  };
   const onFocus = () => {
     setIsSuggestionsOpen(true);
   };
 
+  const onBlur = (e: FocusEvent<HTMLInputElement>) => {
+    if (e.relatedTarget === null) {
+      setIsSuggestionsOpen(false);
+    }
+  };
+
   const onSubmit = async (data: { search: string }) => {
+    setIsSuggestionsOpen(false);
     if (!data.search.trim()) {
       return navigate('/');
     }
@@ -64,9 +69,13 @@ export const FilmSearch = ({ searchQuery = '', ...props }: FilmSearchProps) => {
             <Input
               variant="solid"
               placeholder="Поиск фильмов"
-              onFocus={onFocus}
               {...field}
+              onFocus={onFocus}
               onBlur={onBlur}
+              onChange={e => {
+                field.onChange(e);
+                setIsSuggestionsOpen(true);
+              }}
             />
             <InputRightElement
               h="100%"
