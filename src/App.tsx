@@ -10,8 +10,8 @@ import { useFavorites, useAuth, useHistory } from './app/hooks';
 export const App = () => {
   const { setAllFavorites } = useFavorites();
   const { setAllHistory } = useHistory();
-
   const { isAuth } = useAuth();
+
   useEffect(() => {
     if (isAuth) {
       setAllFavorites();

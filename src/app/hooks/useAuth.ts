@@ -7,13 +7,13 @@ import {
 } from 'firebase/auth';
 import { useAppDispatch, useAppSelector } from '@app/app/hooks/reduxHooks';
 import { login, logout, update } from '@app/app/store/authSlice';
+import { getAuthUser, getUserIsAuth } from '../store/selectors/authSelectors';
 import type { UserAuth } from '@app/shared/types';
 
 export function useAuth() {
   const dispatch = useAppDispatch();
-  const stateAuth = useAppSelector(state => state.auth);
-  const authUser = stateAuth.user;
-  const isAuth = stateAuth.isAuth;
+  const authUser = useAppSelector(getAuthUser);
+  const isAuth = useAppSelector(getUserIsAuth);
 
   const signUp = async (data: UserAuth) => {
     const userCredential = await createUserWithEmailAndPassword(

@@ -7,13 +7,18 @@ import {
   setUserFavorites,
 } from '../store/favoritesSlice';
 import { database } from '../firebase';
+import {
+  getFavoriteFilms,
+  getFavoriteIsLoading,
+} from '../store/selectors/favoritesSelectors';
+import { getUserId } from '../store/selectors/authSelectors';
 import type { TransformedFilm } from '@app/shared/types';
 
 export function useFavorites() {
   const dispatch = useAppDispatch();
-  const favoriteFilms = useAppSelector(state => state.favorites.films);
-  const isLoading = useAppSelector(state => state.favorites.isLoading);
-  const userId = useAppSelector(state => state.auth.user?.uid);
+  const favoriteFilms = useAppSelector(getFavoriteFilms);
+  const isLoading = useAppSelector(getFavoriteIsLoading);
+  const userId = useAppSelector(getUserId);
   const dbRef = ref(database);
 
   const setAllFavorites = useCallback(async () => {
