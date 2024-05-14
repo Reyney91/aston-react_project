@@ -23,7 +23,6 @@ export const FilmInfo = ({ film }: { film: TransformedFilm }) => {
           <Text>Дата выхода: {film.year}</Text>
           <Text>Категория: {film.type}</Text>
           <Text>Страна: {film.country}</Text>
-
           <Button
             as={Link}
             to={film.webUrl}

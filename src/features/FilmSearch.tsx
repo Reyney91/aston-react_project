@@ -9,7 +9,7 @@ import {
 import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useAuth, useHistory, useDebounce } from '@app/app/hooks';
-import { SearchSuggestions } from '@app/shared/ui';
+import { SearchSuggestions } from '@app/widgets';
 import { useState } from 'react';
 import type { FocusEvent } from 'react';
 import type { BoxProps } from '@chakra-ui/react';

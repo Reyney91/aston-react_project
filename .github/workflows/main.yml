@@ -7,7 +7,7 @@ on:
   pull_request:
     branches:
       - main
-      
+
 jobs: # each workflow consists of 1+ jobs; by default, all jobs run in parallel
   lint: # job name
     runs-on: ubuntu-latest # host's operating system
