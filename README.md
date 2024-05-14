@@ -52,6 +52,8 @@ npm run dev
 ## **Дополнительно**
 
 - [Feature-Sliced Design](https://feature-sliced.design/ru/)
+- [Firebase Authentication](https://github.com/Reyney91/aston-react_project/pull/2)
+- [Firebase Realtime Database](https://github.com/Reyney91/aston-react_project/pull/7) 
 - [Chakra UI](https://v2.chakra-ui.com/)
 - [React hook form](https://react-hook-form.com/)
 - [Netlify](https://app.netlify.com/)
