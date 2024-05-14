@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import {
   transformFilmData,
   transformSearchedFilmData,
-} from '@app/utils/transforms/transform-api-data';
+} from '@app/shared/utils/transforms/transform-api-data';
 import { BASE_API_URL } from './apiConstants';
 import type {
   ApiResponse,

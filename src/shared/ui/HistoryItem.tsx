@@ -25,7 +25,6 @@ export const HistoryItem = ({ search, id }) => {
       >
         {search}
       </Link>
-
       <Button variant="destructive" onClick={() => removeFromHistory(id)}>
         X
       </Button>

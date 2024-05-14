@@ -24,7 +24,7 @@ export const theme = extendTheme({
     '2xl': '1900px',
   },
   fonts: {
-    heading: '"Golos Text", sans-serif',
+    heading: 'sans-serif',
   },
   styles: {
     global: {
@@ -32,7 +32,7 @@ export const theme = extendTheme({
         fontSize: { base: '14px', '2xl': '16px' },
       },
       body: {
-        fontFamily: '"Golos Text", sans-serif',
+        fontFamily: 'sans-serif',
         bg: 'secondary.black',
         color: 'main.white',
         fontSize: '1rem',
