@@ -9,7 +9,7 @@ export const FilmInfo = ({ film }: { film: TransformedFilm }) => {
 
   return (
     <Flex justify="space-around">
-      <Image w="30%" src={film.poster} alt={film.name} />
+      <Image w="30%" h="100%" src={film.poster} alt={film.name} />
       <Box ml="3rem">
         <Flex align="center">
           <Heading color="main.green">{film.name}</Heading>

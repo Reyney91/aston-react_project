@@ -7,12 +7,17 @@ import {
   removeHistory,
   setUserHistory,
 } from '../store/historySlice';
+import { getUserId } from '../store/selectors/authSelectors';
+import {
+  getHistoryIsLoading,
+  getUserHistory,
+} from '../store/selectors/historySelectors';
 
 export function useHistory() {
   const dispatch = useAppDispatch();
-  const history = useAppSelector(state => state.history.history);
-  const isLoading = useAppSelector(state => state.history.isLoading);
-  const userId = useAppSelector(state => state.auth.user?.uid);
+  const history = useAppSelector(getUserHistory);
+  const isLoading = useAppSelector(getHistoryIsLoading);
+  const userId = useAppSelector(getUserId);
   const dbRef = ref(database);
 
   const setAllHistory = useCallback(async () => {
