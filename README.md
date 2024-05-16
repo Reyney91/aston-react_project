@@ -44,7 +44,6 @@ npm run dev
 
 - [x] Использование TypeScript.
 - [x] Использование [Firebase](https://github.com/Reyney91/aston-react_project/blob/main/src/app/hooks/useHistory.ts).
-- [x] Низкая связанность клиентского кода с хранилищем. *Считаю этот пункт выполненным потому что управление LS и Firebase у находится только в [кастомных хуках](https://github.com/Reyney91/aston-react_project/blob/main/src/app/hooks/useAuth.ts) по их управлению и в одном [слое стора](https://github.com/Reyney91/aston-react_project/blob/main/src/app/store/authSlice.ts)*
 - [x] Настроен [CI/CD](https://github.com/Reyney91/aston-react_project/blob/main/.github/workflows/main.yml).
 - [x] Используются [мемоизированные селекторы](https://github.com/Reyney91/aston-react_project/tree/main/src/app/store/selectors)
 - [ ] Добавлены тесты.
